@@ -1,1 +1,43 @@
+name: momentum-alert
 
+on:
+  schedule:
+    - cron: '*/30 13-21 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: momentum-alert
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: curl
+
+      - name: Run alert
+        env:
+          TD_API_KEY: ${{ secrets.TD_API_KEY }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: php momentum_alert.php
+
+      - name: Persist state
+        run: |
+          git config user.name  "alert-bot"
+          git config user.email "alert-bot@users.noreply.github.com"
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > last_run.txt
+          touch state.json
+          git add state.json last_run.txt
+          git commit -m "state update [skip ci]" || echo "rien a committer"
+          git push
