@@ -30,7 +30,7 @@ const WATCHLIST = [
 ];
 
 // Paramètres de signal
-const ENTRY_GAIN_PCT  = 50.0;   // hausse min pour l'alerte d'entrée
+const ENTRY_GAIN_PCT  = 1.0;   // hausse min pour l'alerte d'entrée
 const LOOKBACK_DAYS   = 5;      // fenêtre de mesure (jours de bourse)
 const TRAILING_STOP   = 12.0;   // % de repli depuis le pic -> "VEND"
 const REQ_SLEEP_SEC   = 8;      // pause entre appels (free ~8 req/min)
