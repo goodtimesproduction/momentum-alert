@@ -2,7 +2,7 @@ name: momentum-alert
 
 on:
   schedule:
-    - cron: '*/30 13-21 * * 1-5'
+    - cron: '*/30 7-21 * * 1-5'
   workflow_dispatch:
 
 permissions:
