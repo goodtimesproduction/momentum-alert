@@ -1,1 +1,32 @@
-{}
+{
+    "NVDA": {
+        "state": "RIDING",
+        "entry_px": 214.83501,
+        "peak_px": 214.83501,
+        "updated_at": "2026-06-03T21:18:30+00:00"
+    },
+    "PLTR": {
+        "state": "RIDING",
+        "entry_px": 142.22501,
+        "peak_px": 142.22501,
+        "updated_at": "2026-06-03T21:18:38+00:00"
+    },
+    "AMD": {
+        "state": "RIDING",
+        "entry_px": 542.4339,
+        "peak_px": 542.4339,
+        "updated_at": "2026-06-03T21:18:47+00:00"
+    },
+    "SOXL": {
+        "state": "RIDING",
+        "entry_px": 280,
+        "peak_px": 280,
+        "updated_at": "2026-06-03T21:18:55+00:00"
+    },
+    "TQQQ": {
+        "state": "RIDING",
+        "entry_px": 86.55,
+        "peak_px": 86.55,
+        "updated_at": "2026-06-03T21:19:04+00:00"
+    }
+}
