@@ -28,6 +28,7 @@ jobs:
       - name: Run alert
         env:
           TD_API_KEY: ${{ secrets.TD_API_KEY }}
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: php momentum_alert.php
