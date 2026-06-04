@@ -1,16 +1,16 @@
 <?php
 /**
- * momentum_alert.php  —  V2 (radar marche + suivi revente)
+ * momentum_alert.php  —  V2.1 (radar marche + filtre qualite + suivi revente)
  * -------------------------------------------------------------
  * DETECTION (entree) :
- *   - US  : FMP /biggest-gainers -> plus fortes hausses du jour (1 appel).
+ *   - US  : FMP /biggest-gainers (1 appel) -> FILTRE QUALITE -> candidats.
  *   - EU  : watchlist optionnelle -> hausse sur N jours via Twelve Data.
  * SUIVI (revente) :
- *   - Pour chaque position en RIDING : prix en direct via Twelve Data,
- *     suivi du pic et alerte VEND si repli >= TRAILING_STOP.
+ *   - Position en RIDING : prix en direct (Twelve Data), suivi du pic,
+ *     alerte VEND si repli >= TRAILING_STOP.
  *
  * Cles via Secrets GitHub : TD_API_KEY, FMP_API_KEY, TG_BOT_TOKEN, TG_CHAT_ID
- * Etat dans state.json (commite dans le depot).
+ * Etat dans state.json.
  * -------------------------------------------------------------
  */
 
@@ -25,23 +25,28 @@ define('FMP_API_KEY',  getenv('FMP_API_KEY')  ?: '');
 define('TG_BOT_TOKEN', getenv('TG_BOT_TOKEN') ?: '');
 define('TG_CHAT_ID',   getenv('TG_CHAT_ID')   ?: '');
 
-// --- Detection US (FMP) ---
-const GAINER_THRESHOLD = 25.0;   // hausse du jour min pour alerter (10=sensible, 30=rare)
-const MIN_PRICE        = 5.0;    // ignore les penny stocks sous ce prix (anti-bruit)
+// --- Detection US (FMP) : zone de hausse + filtre qualite ---
+const GAINER_THRESHOLD = 15.0;   // hausse du jour MIN pour alerter
+const MAX_GAINER_PCT   = 60.0;   // hausse du jour MAX (au-dessus = pump deja explose)
+const MIN_PRICE        = 10.0;   // sous ce prix = penny stock -> ignore
+// Mots-cles a exclure dans le NOM du titre (warrants, SPAC, ETF a levier...)
+const NAME_BLOCKLIST = [
+    'warrant', 'unit', 'right', 'acquisition corp', 'merger corp',
+    '2x', '3x', '-1x', 'short', 'leveraged', 'bear', 'inverse',
+];
 
 // --- Detection EU (watchlist optionnelle) ---
-// Laisse vide [] si tu ne veux que les US. Sinon : ['symbol'=>'MC','mic_code'=>'XPAR']
-// Codes : XPAR=Paris, XAMS=Amsterdam, XBRU=Bruxelles, XETR=Francfort, XMIL=Milan, XMAD=Madrid, XLON=Londres
+// ['symbol'=>'MC','mic_code'=>'XPAR'] ... XPAR=Paris XAMS=Amsterdam XETR=Francfort XMIL=Milan XLON=Londres
 const EU_WATCHLIST = [
     // ['symbol' => 'MC',   'mic_code' => 'XPAR'],  // LVMH
     // ['symbol' => 'ASML', 'mic_code' => 'XAMS'],  // ASML
 ];
 const ENTRY_GAIN_PCT_EU = 30.0;  // hausse sur N jours pour les titres EU
-const LOOKBACK_DAYS     = 5;     // fenetre EU (jours de bourse)
+const LOOKBACK_DAYS     = 5;
 
-// --- Suivi / revente (commun US + EU) ---
+// --- Suivi / revente (commun) ---
 const TRAILING_STOP = 12.0;      // % de repli depuis le pic -> "VEND"
-const REQ_SLEEP_SEC = 8;         // pause entre appels Twelve Data (free ~8/min)
+const REQ_SLEEP_SEC = 8;         // pause entre appels Twelve Data
 
 const STATE_PATH = __DIR__ . '/state.json';
 
@@ -51,79 +56,94 @@ if (TD_API_KEY === '' || FMP_API_KEY === '' || TG_BOT_TOKEN === '' || TG_CHAT_ID
 }
 
 // ============================================================
-// 2) ETAT (JSON)
+// 2) ETAT
 // ============================================================
 function loadAllState(): array {
     if (!is_file(STATE_PATH)) return [];
-    $data = json_decode(file_get_contents(STATE_PATH) ?: '[]', true);
-    return is_array($data) ? $data : [];
+    $d = json_decode(file_get_contents(STATE_PATH) ?: '[]', true);
+    return is_array($d) ? $d : [];
 }
 function saveAllState(array $s): void {
     file_put_contents(STATE_PATH, json_encode($s, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 }
 
 // ============================================================
-// 3) HTTP helper
+// 3) HTTP
 // ============================================================
 function httpGet(string $url): ?string {
     $ch = curl_init($url);
     curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 20]);
-    $resp = curl_exec($ch);
+    $r = curl_exec($ch);
     curl_close($ch);
-    return $resp === false ? null : $resp;
+    return $r === false ? null : $r;
 }
 
 // ============================================================
-// 4) DETECTION US — FMP biggest gainers (1 appel)
+// 4) DETECTION US — FMP biggest gainers + FILTRE QUALITE
 // ============================================================
 function fetchTopGainers(): array {
     $resp = httpGet('https://financialmodelingprep.com/stable/biggest-gainers?apikey=' . FMP_API_KEY);
     if ($resp === null) { fwrite(STDERR, "[FMP] pas de reponse\n"); return []; }
     $data = json_decode($resp, true);
     if (!is_array($data) || isset($data['Error Message']) || isset($data['error'])) {
-        $msg = $data['Error Message'] ?? $data['error'] ?? 'reponse invalide';
-        fwrite(STDERR, "[FMP] erreur : $msg\n");
+        fwrite(STDERR, "[FMP] erreur : " . ($data['Error Message'] ?? $data['error'] ?? 'invalide') . "\n");
         return [];
     }
-    return $data; // [{symbol, name, price, change, changesPercentage, exchange}, ...]
+    return $data;
 }
 
 function parsePct($v): float {
     return (float) str_replace(['%', '+', ' '], '', (string) $v);
 }
 
+// Vrai signal ? Filtre prix + zone de hausse + nom non junk
+function isQualityGainer(array $g): bool {
+    $price = (float) ($g['price'] ?? 0);
+    $pct   = parsePct($g['changesPercentage'] ?? 0);
+
+    if ($price < MIN_PRICE)         return false;  // penny stock
+    if ($pct < GAINER_THRESHOLD)    return false;  // pas assez
+    if ($pct > MAX_GAINER_PCT)      return false;  // pump deja explose
+
+    $name = strtolower($g['name'] ?? '');
+    foreach (NAME_BLOCKLIST as $bad) {
+        if (str_contains($name, $bad)) return false;  // warrant / SPAC / ETF levier...
+    }
+    return true;
+}
+
 // ============================================================
-// 5) PRIX EN DIRECT — Twelve Data /price (suivi des positions)
+// 5) PRIX EN DIRECT — Twelve Data /price (suivi)
 // ============================================================
 function fetchPrice(string $symbol, ?string $mic): ?float {
-    $params = ['symbol' => $symbol, 'apikey' => TD_API_KEY];
-    if ($mic) $params['mic_code'] = $mic;
-    $resp = httpGet('https://api.twelvedata.com/price?' . http_build_query($params));
+    $p = ['symbol' => $symbol, 'apikey' => TD_API_KEY];
+    if ($mic) $p['mic_code'] = $mic;
+    $resp = httpGet('https://api.twelvedata.com/price?' . http_build_query($p));
     if ($resp === null) return null;
-    $data = json_decode($resp, true);
-    if (!isset($data['price'])) {
+    $d = json_decode($resp, true);
+    if (!isset($d['price'])) {
         $label = $mic ? "$symbol ($mic)" : $symbol;
-        fwrite(STDERR, "[$label] prix indispo : " . ($data['message'] ?? 'n/a') . "\n");
+        fwrite(STDERR, "[$label] prix indispo : " . ($d['message'] ?? 'n/a') . "\n");
         return null;
     }
-    return (float) $data['price'];
+    return (float) $d['price'];
 }
 
 // ============================================================
-// 6) HISTORIQUE — Twelve Data (detection EU sur N jours)
+// 6) HISTORIQUE — Twelve Data (detection EU)
 // ============================================================
 function fetchCloses(string $symbol, ?string $mic, int $days): ?array {
-    $params = ['symbol' => $symbol, 'interval' => '1day', 'outputsize' => $days + 1, 'apikey' => TD_API_KEY];
-    if ($mic) $params['mic_code'] = $mic;
-    $resp = httpGet('https://api.twelvedata.com/time_series?' . http_build_query($params));
+    $p = ['symbol' => $symbol, 'interval' => '1day', 'outputsize' => $days + 1, 'apikey' => TD_API_KEY];
+    if ($mic) $p['mic_code'] = $mic;
+    $resp = httpGet('https://api.twelvedata.com/time_series?' . http_build_query($p));
     if ($resp === null) return null;
-    $data = json_decode($resp, true);
-    if (!isset($data['values']) || !is_array($data['values'])) return null;
-    return array_map(fn($v) => (float) $v['close'], $data['values']);
+    $d = json_decode($resp, true);
+    if (!isset($d['values']) || !is_array($d['values'])) return null;
+    return array_map(fn($v) => (float) $v['close'], $d['values']);
 }
 
 // ============================================================
-// 7) NOTIFICATION (Telegram) — true si le message part
+// 7) TELEGRAM
 // ============================================================
 function sendTelegram(string $text): bool {
     $ch = curl_init('https://api.telegram.org/bot' . TG_BOT_TOKEN . '/sendMessage');
@@ -146,15 +166,13 @@ function stateKey(string $symbol, ?string $mic): string {
     return $mic ? "$symbol.$mic" : $symbol;
 }
 
-// Entree : passe en RIDING si on etait IDLE et si l'alerte part
 function maybeEnter(string $symbol, ?string $mic, float $price, float $pct, array &$allState): void {
     $key = stateKey($symbol, $mic);
-    if (($allState[$key]['state'] ?? 'IDLE') !== 'IDLE') return; // deja suivi
+    if (($allState[$key]['state'] ?? 'IDLE') !== 'IDLE') return;
     $label = $mic ? "$symbol ($mic)" : $symbol;
     $sent = sendTelegram(sprintf(
         "\xF0\x9F\x9A\x80 <b>%s</b> devient interessante\n".
-        "Hausse <b>+%.1f%%</b>\n".
-        "Prix : <b>%.2f</b>\n".
+        "Hausse <b>+%.1f%%</b>\nPrix : <b>%.2f</b>\n".
         "\xF0\x9F\x91\x89 Suivi du repli active (sortie si -%.0f%% du pic).",
         $label, $pct, $price, TRAILING_STOP
     ));
@@ -166,7 +184,6 @@ function maybeEnter(string $symbol, ?string $mic, float $price, float $pct, arra
     }
 }
 
-// Suivi : met a jour le pic, alerte VEND si repli, repasse en IDLE
 function trackRiding(string $key, array &$allState): void {
     $s = $allState[$key];
     $price = fetchPrice($s['symbol'], $s['mic'] ?? null);
@@ -202,18 +219,14 @@ function trackRiding(string $key, array &$allState): void {
 // ============================================================
 $allState = loadAllState();
 
-// --- (A) Detection US via FMP : 1 seul appel ---
+// (A) US via FMP : 1 appel, puis filtre qualite
 foreach (fetchTopGainers() as $g) {
     $sym = $g['symbol'] ?? '';
-    if ($sym === '') continue;
-    $pct   = parsePct($g['changesPercentage'] ?? 0);
-    $price = (float) ($g['price'] ?? 0);
-    if ($pct >= GAINER_THRESHOLD && $price >= MIN_PRICE) {
-        maybeEnter($sym, null, $price, $pct, $allState);
-    }
+    if ($sym === '' || !isQualityGainer($g)) continue;
+    maybeEnter($sym, null, (float) $g['price'], parsePct($g['changesPercentage'] ?? 0), $allState);
 }
 
-// --- (B) Detection EU via watchlist (Twelve Data, N jours) ---
+// (B) EU via watchlist (Twelve Data, N jours)
 foreach (EU_WATCHLIST as $e) {
     $closes = fetchCloses($e['symbol'], $e['mic_code'] ?? null, LOOKBACK_DAYS);
     if ($closes && count($closes) >= 2) {
@@ -228,7 +241,7 @@ foreach (EU_WATCHLIST as $e) {
     sleep(REQ_SLEEP_SEC);
 }
 
-// --- (C) Suivi de TOUTES les positions en RIDING (US + EU) ---
+// (C) Suivi des positions en RIDING (US + EU)
 foreach (array_keys($allState) as $key) {
     if (($allState[$key]['state'] ?? '') !== 'RIDING') continue;
     trackRiding($key, $allState);
