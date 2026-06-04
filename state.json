@@ -1,27 +1,27 @@
 {
     "JLHL": {
-        "state": "RIDING",
+        "state": "IDLE",
         "symbol": "JLHL",
         "mic": null,
-        "entry_px": 34.44,
-        "peak_px": 34.44,
-        "updated_at": "2026-06-04T10:33:39+00:00"
+        "entry_px": null,
+        "peak_px": null,
+        "updated_at": "2026-06-04T13:53:15+00:00"
     },
     "QMCO": {
         "state": "RIDING",
         "symbol": "QMCO",
         "mic": null,
         "entry_px": 15.95,
-        "peak_px": 15.985,
-        "updated_at": "2026-06-04T10:33:48+00:00"
+        "peak_px": 17.91,
+        "updated_at": "2026-06-04T13:53:24+00:00"
     },
     "ABVX": {
         "state": "RIDING",
         "symbol": "ABVX",
         "mic": null,
         "entry_px": 90.15,
-        "peak_px": 90.15,
-        "updated_at": "2026-06-04T10:33:56+00:00"
+        "peak_px": 97.14,
+        "updated_at": "2026-06-04T13:53:32+00:00"
     },
     "NVTS": {
         "state": "RIDING",
@@ -29,7 +29,7 @@
         "mic": null,
         "entry_px": 30.84,
         "peak_px": 30.84,
-        "updated_at": "2026-06-04T10:34:04+00:00"
+        "updated_at": "2026-06-04T13:53:40+00:00"
     },
     "ALOY": {
         "state": "RIDING",
@@ -37,22 +37,30 @@
         "mic": null,
         "entry_px": 13.8,
         "peak_px": 13.81,
-        "updated_at": "2026-06-04T10:34:12+00:00"
+        "updated_at": "2026-06-04T13:53:48+00:00"
     },
     "DRTS": {
         "state": "RIDING",
         "symbol": "DRTS",
         "mic": null,
         "entry_px": 10.58,
-        "peak_px": 10.59,
-        "updated_at": "2026-06-04T10:34:20+00:00"
+        "peak_px": 11.005,
+        "updated_at": "2026-06-04T13:53:56+00:00"
     },
     "MMED": {
         "state": "RIDING",
         "symbol": "MMED",
         "mic": null,
         "entry_px": 14.26,
-        "peak_px": 14.3454,
-        "updated_at": "2026-06-04T10:34:29+00:00"
+        "peak_px": 14.515,
+        "updated_at": "2026-06-04T13:54:05+00:00"
+    },
+    "SPRC": {
+        "state": "RIDING",
+        "symbol": "SPRC",
+        "mic": null,
+        "entry_px": 12.83,
+        "peak_px": 12.9,
+        "updated_at": "2026-06-04T13:54:13+00:00"
     }
 }
