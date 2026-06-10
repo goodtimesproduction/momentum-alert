@@ -21,7 +21,7 @@
         "mic": null,
         "entry_px": 90.15,
         "peak_px": 105.96,
-        "updated_at": "2026-06-10T14:18:07+00:00"
+        "updated_at": "2026-06-10T17:41:00+00:00"
     },
     "NVTS": {
         "state": "IDLE",
@@ -53,7 +53,7 @@
         "mic": null,
         "entry_px": 14.26,
         "peak_px": 15.25,
-        "updated_at": "2026-06-10T14:18:15+00:00"
+        "updated_at": "2026-06-10T17:41:09+00:00"
     },
     "SPRC": {
         "state": "IDLE",
@@ -85,15 +85,15 @@
         "mic": null,
         "entry_px": 66.12,
         "peak_px": 66.12,
-        "updated_at": "2026-06-10T14:18:23+00:00"
+        "updated_at": "2026-06-10T17:41:17+00:00"
     },
     "AGL": {
         "state": "RIDING",
         "symbol": "AGL",
         "mic": null,
         "entry_px": 97.32,
-        "peak_px": 106.81,
-        "updated_at": "2026-06-10T14:18:32+00:00"
+        "peak_px": 107.2,
+        "updated_at": "2026-06-10T17:41:25+00:00"
     },
     "ELTX": {
         "state": "RIDING",
@@ -101,7 +101,7 @@
         "mic": null,
         "entry_px": 14.56,
         "peak_px": 15.385,
-        "updated_at": "2026-06-10T14:18:40+00:00"
+        "updated_at": "2026-06-10T17:41:33+00:00"
     },
     "QTTB": {
         "state": "IDLE",
@@ -112,12 +112,12 @@
         "updated_at": "2026-06-08T15:30:15+00:00"
     },
     "BOT": {
-        "state": "RIDING",
+        "state": "IDLE",
         "symbol": "BOT",
         "mic": null,
-        "entry_px": 33.385,
-        "peak_px": 44.93,
-        "updated_at": "2026-06-10T14:18:48+00:00"
+        "entry_px": null,
+        "peak_px": null,
+        "updated_at": "2026-06-10T17:41:42+00:00"
     },
     "CHRN": {
         "state": "IDLE",
@@ -165,7 +165,7 @@
         "mic": null,
         "entry_px": 11.4709,
         "peak_px": 11.71,
-        "updated_at": "2026-06-10T14:18:56+00:00"
+        "updated_at": "2026-06-10T17:41:50+00:00"
     },
     "HURC": {
         "state": "RIDING",
@@ -173,15 +173,15 @@
         "mic": null,
         "entry_px": 21.57,
         "peak_px": 21.84,
-        "updated_at": "2026-06-10T14:19:05+00:00"
+        "updated_at": "2026-06-10T17:41:58+00:00"
     },
     "STI": {
         "state": "RIDING",
         "symbol": "STI",
         "mic": null,
         "entry_px": 24.3744,
-        "peak_px": 24.75,
-        "updated_at": "2026-06-10T14:19:13+00:00"
+        "peak_px": 25.75,
+        "updated_at": "2026-06-10T17:42:06+00:00"
     },
     "SDOT": {
         "state": "IDLE",
@@ -197,15 +197,15 @@
         "mic": null,
         "entry_px": 28.855,
         "peak_px": 32.54,
-        "updated_at": "2026-06-10T14:19:21+00:00"
+        "updated_at": "2026-06-10T17:42:14+00:00"
     },
     "MPAA": {
         "state": "RIDING",
         "symbol": "MPAA",
         "mic": null,
         "entry_px": 14.69,
-        "peak_px": 14.69,
-        "updated_at": "2026-06-10T14:19:29+00:00"
+        "peak_px": 14.725,
+        "updated_at": "2026-06-10T17:42:22+00:00"
     },
     "VRM": {
         "state": "IDLE",
@@ -221,7 +221,7 @@
         "mic": null,
         "entry_px": 29.98,
         "peak_px": 32.68,
-        "updated_at": "2026-06-10T14:19:37+00:00"
+        "updated_at": "2026-06-10T17:42:31+00:00"
     },
     "CBRS": {
         "state": "IDLE",
@@ -237,7 +237,7 @@
         "mic": null,
         "entry_px": 19,
         "peak_px": 25.03,
-        "updated_at": "2026-06-10T14:19:45+00:00"
+        "updated_at": "2026-06-10T17:42:39+00:00"
     },
     "SVRN": {
         "state": "RIDING",
@@ -245,7 +245,7 @@
         "mic": null,
         "entry_px": 11.25,
         "peak_px": 11.25,
-        "updated_at": "2026-06-10T14:19:54+00:00"
+        "updated_at": "2026-06-10T17:42:47+00:00"
     },
     "OP": {
         "state": "RIDING",
@@ -253,7 +253,7 @@
         "mic": null,
         "entry_px": 10.845,
         "peak_px": 11.5,
-        "updated_at": "2026-06-10T14:20:02+00:00"
+        "updated_at": "2026-06-10T17:42:55+00:00"
     },
     "NUVL": {
         "state": "RIDING",
@@ -261,15 +261,15 @@
         "mic": null,
         "entry_px": 123.58,
         "peak_px": 123.58,
-        "updated_at": "2026-06-10T14:20:10+00:00"
+        "updated_at": "2026-06-10T17:43:03+00:00"
     },
     "ALHC": {
         "state": "RIDING",
         "symbol": "ALHC",
         "mic": null,
         "entry_px": 18.0454,
-        "peak_px": 19.705,
-        "updated_at": "2026-06-10T14:20:18+00:00"
+        "peak_px": 20.595,
+        "updated_at": "2026-06-10T17:43:11+00:00"
     },
     "ADUR": {
         "state": "RIDING",
@@ -277,15 +277,15 @@
         "mic": null,
         "entry_px": 16.855,
         "peak_px": 16.99,
-        "updated_at": "2026-06-10T14:20:27+00:00"
+        "updated_at": "2026-06-10T17:43:19+00:00"
     },
     "FAC": {
         "state": "RIDING",
         "symbol": "FAC",
         "mic": null,
         "entry_px": 16.01,
-        "peak_px": 16.87,
-        "updated_at": "2026-06-10T14:20:35+00:00"
+        "peak_px": 20.7,
+        "updated_at": "2026-06-10T17:43:28+00:00"
     },
     "BVC": {
         "state": "RIDING",
@@ -293,15 +293,15 @@
         "mic": null,
         "entry_px": 11.79,
         "peak_px": 11.79,
-        "updated_at": "2026-06-10T14:20:43+00:00"
+        "updated_at": "2026-06-10T17:43:36+00:00"
     },
     "VELO": {
         "state": "RIDING",
         "symbol": "VELO",
         "mic": null,
         "entry_px": 19.43,
-        "peak_px": 20.16,
-        "updated_at": "2026-06-10T14:20:51+00:00"
+        "peak_px": 23.365,
+        "updated_at": "2026-06-10T17:43:44+00:00"
     },
     "CECO": {
         "state": "RIDING",
@@ -309,7 +309,7 @@
         "mic": null,
         "entry_px": 95.445,
         "peak_px": 98.2,
-        "updated_at": "2026-06-10T14:20:59+00:00"
+        "updated_at": "2026-06-10T17:43:52+00:00"
     },
     "ODC": {
         "state": "RIDING",
@@ -317,7 +317,7 @@
         "mic": null,
         "entry_px": 98.59,
         "peak_px": 99.01,
-        "updated_at": "2026-06-10T14:21:08+00:00"
+        "updated_at": "2026-06-10T17:44:00+00:00"
     },
     "CBRL": {
         "state": "RIDING",
@@ -325,15 +325,15 @@
         "mic": null,
         "entry_px": 46.14,
         "peak_px": 46.26,
-        "updated_at": "2026-06-10T14:21:16+00:00"
+        "updated_at": "2026-06-10T17:44:09+00:00"
     },
     "LAKE": {
         "state": "RIDING",
         "symbol": "LAKE",
         "mic": null,
         "entry_px": 11.085,
-        "peak_px": 11.275,
-        "updated_at": "2026-06-10T14:21:24+00:00"
+        "peak_px": 11.41,
+        "updated_at": "2026-06-10T17:44:17+00:00"
     },
     "CASY": {
         "state": "RIDING",
@@ -341,6 +341,6 @@
         "mic": null,
         "entry_px": 883.1082,
         "peak_px": 887.73,
-        "updated_at": "2026-06-10T14:21:32+00:00"
+        "updated_at": "2026-06-10T17:44:25+00:00"
     }
 }
