@@ -3206,5 +3206,13 @@
         "entry_px": 21.34,
         "peak_px": 21.34,
         "updated_at": "2026-08-07T15:43:21+00:00"
+    },
+    "HBB": {
+        "state": "RIDING",
+        "symbol": "HBB",
+        "mic": null,
+        "entry_px": 32.67,
+        "peak_px": 32.67,
+        "updated_at": "2026-08-07T16:40:47+00:00"
     }
 }
