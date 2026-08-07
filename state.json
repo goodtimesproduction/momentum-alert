@@ -3222,5 +3222,13 @@
         "entry_px": 10.96,
         "peak_px": 10.96,
         "updated_at": "2026-08-07T17:39:31+00:00"
+    },
+    "TNDM": {
+        "state": "RIDING",
+        "symbol": "TNDM",
+        "mic": null,
+        "entry_px": 22.58,
+        "peak_px": 22.58,
+        "updated_at": "2026-08-07T19:43:20+00:00"
     }
 }
