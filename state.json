@@ -3190,5 +3190,21 @@
         "entry_px": 49.61,
         "peak_px": 49.61,
         "updated_at": "2026-08-07T14:44:25+00:00"
+    },
+    "DOCS": {
+        "state": "RIDING",
+        "symbol": "DOCS",
+        "mic": null,
+        "entry_px": 28.18,
+        "peak_px": 28.18,
+        "updated_at": "2026-08-07T15:43:20+00:00"
+    },
+    "LTGO": {
+        "state": "RIDING",
+        "symbol": "LTGO",
+        "mic": null,
+        "entry_px": 21.34,
+        "peak_px": 21.34,
+        "updated_at": "2026-08-07T15:43:21+00:00"
     }
 }
