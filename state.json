@@ -3310,5 +3310,13 @@
         "entry_px": 31.835,
         "peak_px": 31.835,
         "updated_at": "2026-08-10T17:18:21+00:00"
+    },
+    "REPL": {
+        "state": "RIDING",
+        "symbol": "REPL",
+        "mic": null,
+        "entry_px": 14.005,
+        "peak_px": 14.005,
+        "updated_at": "2026-08-10T18:10:14+00:00"
     }
 }
