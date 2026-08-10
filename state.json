@@ -3302,5 +3302,13 @@
         "entry_px": 186.4,
         "peak_px": 186.4,
         "updated_at": "2026-08-10T15:28:36+00:00"
+    },
+    "OBX": {
+        "state": "RIDING",
+        "symbol": "OBX",
+        "mic": null,
+        "entry_px": 31.835,
+        "peak_px": 31.835,
+        "updated_at": "2026-08-10T17:18:21+00:00"
     }
 }
