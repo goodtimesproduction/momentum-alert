@@ -3390,5 +3390,13 @@
         "entry_px": 12.69,
         "peak_px": 12.69,
         "updated_at": "2026-08-11T17:48:18+00:00"
+    },
+    "AP": {
+        "state": "RIDING",
+        "symbol": "AP",
+        "mic": null,
+        "entry_px": 10.06,
+        "peak_px": 10.06,
+        "updated_at": "2026-08-11T18:45:43+00:00"
     }
 }
