@@ -3358,5 +3358,13 @@
         "entry_px": 15.61,
         "peak_px": 15.61,
         "updated_at": "2026-08-11T13:51:30+00:00"
+    },
+    "MG": {
+        "state": "RIDING",
+        "symbol": "MG",
+        "mic": null,
+        "entry_px": 18.62,
+        "peak_px": 18.62,
+        "updated_at": "2026-08-11T14:49:25+00:00"
     }
 }
