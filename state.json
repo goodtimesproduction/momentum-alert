@@ -8,12 +8,12 @@
         "updated_at": "2026-07-16T14:58:08+00:00"
     },
     "QMCO": {
-        "state": "IDLE",
+        "state": "RIDING",
         "symbol": "QMCO",
         "mic": null,
-        "entry_px": null,
-        "peak_px": null,
-        "updated_at": "2026-06-04T21:08:59+00:00"
+        "entry_px": 16.83,
+        "peak_px": 16.83,
+        "updated_at": "2026-08-11T13:51:28+00:00"
     },
     "ABVX": {
         "state": "IDLE",
@@ -3318,5 +3318,45 @@
         "entry_px": 14.005,
         "peak_px": 14.005,
         "updated_at": "2026-08-11T11:34:52+00:00"
+    },
+    "NIQ": {
+        "state": "RIDING",
+        "symbol": "NIQ",
+        "mic": null,
+        "entry_px": 15.1,
+        "peak_px": 15.1,
+        "updated_at": "2026-08-11T13:51:29+00:00"
+    },
+    "RPD": {
+        "state": "RIDING",
+        "symbol": "RPD",
+        "mic": null,
+        "entry_px": 14.29,
+        "peak_px": 14.29,
+        "updated_at": "2026-08-11T13:51:29+00:00"
+    },
+    "TISI": {
+        "state": "RIDING",
+        "symbol": "TISI",
+        "mic": null,
+        "entry_px": 19.59,
+        "peak_px": 19.59,
+        "updated_at": "2026-08-11T13:51:29+00:00"
+    },
+    "ALMR": {
+        "state": "RIDING",
+        "symbol": "ALMR",
+        "mic": null,
+        "entry_px": 32.53,
+        "peak_px": 32.53,
+        "updated_at": "2026-08-11T13:51:30+00:00"
+    },
+    "HQI": {
+        "state": "RIDING",
+        "symbol": "HQI",
+        "mic": null,
+        "entry_px": 15.61,
+        "peak_px": 15.61,
+        "updated_at": "2026-08-11T13:51:30+00:00"
     }
 }
