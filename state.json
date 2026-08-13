@@ -3518,5 +3518,13 @@
         "entry_px": 17.71,
         "peak_px": 17.71,
         "updated_at": "2026-08-13T16:23:36+00:00"
+    },
+    "IMC": {
+        "state": "RIDING",
+        "symbol": "IMC",
+        "mic": null,
+        "entry_px": 10,
+        "peak_px": 10,
+        "updated_at": "2026-08-13T17:25:21+00:00"
     }
 }
