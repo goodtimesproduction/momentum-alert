@@ -3510,5 +3510,13 @@
         "entry_px": 28.79,
         "peak_px": 28.79,
         "updated_at": "2026-08-13T15:27:59+00:00"
+    },
+    "CHCI": {
+        "state": "RIDING",
+        "symbol": "CHCI",
+        "mic": null,
+        "entry_px": 17.71,
+        "peak_px": 17.71,
+        "updated_at": "2026-08-13T16:23:36+00:00"
     }
 }
