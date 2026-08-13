@@ -3526,5 +3526,13 @@
         "entry_px": 10,
         "peak_px": 10,
         "updated_at": "2026-08-13T17:25:21+00:00"
+    },
+    "SLGL": {
+        "state": "RIDING",
+        "symbol": "SLGL",
+        "mic": null,
+        "entry_px": 83.9,
+        "peak_px": 83.9,
+        "updated_at": "2026-08-13T18:13:56+00:00"
     }
 }
