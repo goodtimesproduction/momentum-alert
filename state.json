@@ -3534,5 +3534,21 @@
         "entry_px": 83.9,
         "peak_px": 83.9,
         "updated_at": "2026-08-13T18:13:56+00:00"
+    },
+    "VCX": {
+        "state": "RIDING",
+        "symbol": "VCX",
+        "mic": null,
+        "entry_px": 39.52,
+        "peak_px": 39.52,
+        "updated_at": "2026-08-13T19:31:26+00:00"
+    },
+    "WDAY": {
+        "state": "RIDING",
+        "symbol": "WDAY",
+        "mic": null,
+        "entry_px": 209.91,
+        "peak_px": 209.91,
+        "updated_at": "2026-08-13T19:31:27+00:00"
     }
 }
