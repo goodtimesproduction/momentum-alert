@@ -3558,5 +3558,53 @@
         "entry_px": 10.84,
         "peak_px": 10.9,
         "updated_at": "2026-08-14T11:15:31+00:00"
+    },
+    "MF": {
+        "state": "RIDING",
+        "symbol": "MF",
+        "mic": null,
+        "entry_px": 14.33,
+        "peak_px": 14.33,
+        "updated_at": "2026-08-14T14:07:50+00:00"
+    },
+    "ETON": {
+        "state": "RIDING",
+        "symbol": "ETON",
+        "mic": null,
+        "entry_px": 56.01,
+        "peak_px": 56.01,
+        "updated_at": "2026-08-14T14:07:51+00:00"
+    },
+    "HTFL": {
+        "state": "RIDING",
+        "symbol": "HTFL",
+        "mic": null,
+        "entry_px": 41.1,
+        "peak_px": 41.1,
+        "updated_at": "2026-08-14T14:07:51+00:00"
+    },
+    "IMXI": {
+        "state": "RIDING",
+        "symbol": "IMXI",
+        "mic": null,
+        "entry_px": 13.78,
+        "peak_px": 13.78,
+        "updated_at": "2026-08-14T14:07:52+00:00"
+    },
+    "RCMT": {
+        "state": "RIDING",
+        "symbol": "RCMT",
+        "mic": null,
+        "entry_px": 33.735,
+        "peak_px": 33.735,
+        "updated_at": "2026-08-14T14:07:52+00:00"
+    },
+    "NMAX": {
+        "state": "RIDING",
+        "symbol": "NMAX",
+        "mic": null,
+        "entry_px": 11.05,
+        "peak_px": 11.05,
+        "updated_at": "2026-08-14T14:07:53+00:00"
     }
 }
