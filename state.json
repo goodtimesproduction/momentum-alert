@@ -3710,5 +3710,21 @@
         "entry_px": 11.93,
         "peak_px": 11.93,
         "updated_at": "2026-08-18T19:46:08+00:00"
+    },
+    "LYEL": {
+        "state": "RIDING",
+        "symbol": "LYEL",
+        "mic": null,
+        "entry_px": 15.79,
+        "peak_px": 15.79,
+        "updated_at": "2026-08-18T21:45:13+00:00"
+    },
+    "CDNL": {
+        "state": "RIDING",
+        "symbol": "CDNL",
+        "mic": null,
+        "entry_px": 45.14,
+        "peak_px": 45.14,
+        "updated_at": "2026-08-18T21:45:13+00:00"
     }
 }
