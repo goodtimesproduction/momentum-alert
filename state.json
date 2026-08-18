@@ -3686,5 +3686,13 @@
         "entry_px": 104.3856,
         "peak_px": 104.3856,
         "updated_at": "2026-08-18T14:02:43+00:00"
+    },
+    "FLXS": {
+        "state": "RIDING",
+        "symbol": "FLXS",
+        "mic": null,
+        "entry_px": 85.4675,
+        "peak_px": 85.4675,
+        "updated_at": "2026-08-18T14:58:49+00:00"
     }
 }
