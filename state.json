@@ -3662,5 +3662,29 @@
         "entry_px": 10.2485,
         "peak_px": 10.2485,
         "updated_at": "2026-08-18T09:28:39+00:00"
+    },
+    "AMLX": {
+        "state": "RIDING",
+        "symbol": "AMLX",
+        "mic": null,
+        "entry_px": 31.35,
+        "peak_px": 31.35,
+        "updated_at": "2026-08-18T14:02:42+00:00"
+    },
+    "VOGX": {
+        "state": "RIDING",
+        "symbol": "VOGX",
+        "mic": null,
+        "entry_px": 19,
+        "peak_px": 19,
+        "updated_at": "2026-08-18T14:02:43+00:00"
+    },
+    "HAE": {
+        "state": "RIDING",
+        "symbol": "HAE",
+        "mic": null,
+        "entry_px": 104.3856,
+        "peak_px": 104.3856,
+        "updated_at": "2026-08-18T14:02:43+00:00"
     }
 }
