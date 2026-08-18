@@ -3702,5 +3702,13 @@
         "entry_px": 34.9799,
         "peak_px": 34.9799,
         "updated_at": "2026-08-18T15:30:35+00:00"
+    },
+    "LEXX": {
+        "state": "RIDING",
+        "symbol": "LEXX",
+        "mic": null,
+        "entry_px": 11.93,
+        "peak_px": 11.93,
+        "updated_at": "2026-08-18T19:46:08+00:00"
     }
 }
