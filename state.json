@@ -3782,5 +3782,21 @@
         "entry_px": 33.485,
         "peak_px": 33.485,
         "updated_at": "2026-08-19T17:50:58+00:00"
+    },
+    "BHYP": {
+        "state": "RIDING",
+        "symbol": "BHYP",
+        "mic": null,
+        "entry_px": 39.55,
+        "peak_px": 39.55,
+        "updated_at": "2026-08-19T20:56:03+00:00"
+    },
+    "THYP": {
+        "state": "RIDING",
+        "symbol": "THYP",
+        "mic": null,
+        "entry_px": 40.78,
+        "peak_px": 40.78,
+        "updated_at": "2026-08-19T20:56:03+00:00"
     }
 }
