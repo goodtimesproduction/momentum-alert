@@ -3862,5 +3862,13 @@
         "entry_px": 28.11,
         "peak_px": 28.11,
         "updated_at": "2026-08-20T19:08:29+00:00"
+    },
+    "MARA": {
+        "state": "RIDING",
+        "symbol": "MARA",
+        "mic": null,
+        "entry_px": 11.15,
+        "peak_px": 11.15,
+        "updated_at": "2026-08-20T20:52:48+00:00"
     }
 }
