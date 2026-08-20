@@ -3854,5 +3854,13 @@
         "entry_px": 11.435,
         "peak_px": 11.435,
         "updated_at": "2026-08-20T17:27:08+00:00"
+    },
+    "BTCK": {
+        "state": "RIDING",
+        "symbol": "BTCK",
+        "mic": null,
+        "entry_px": 28.11,
+        "peak_px": 28.11,
+        "updated_at": "2026-08-20T19:08:29+00:00"
     }
 }
