@@ -3822,5 +3822,13 @@
         "entry_px": 13.74,
         "peak_px": 13.74,
         "updated_at": "2026-08-20T15:01:10+00:00"
+    },
+    "XRPC": {
+        "state": "RIDING",
+        "symbol": "XRPC",
+        "mic": null,
+        "entry_px": 13.335,
+        "peak_px": 13.335,
+        "updated_at": "2026-08-20T15:55:33+00:00"
     }
 }
