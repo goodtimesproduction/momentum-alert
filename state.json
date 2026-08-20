@@ -3814,5 +3814,13 @@
         "entry_px": 61.02,
         "peak_px": 61.02,
         "updated_at": "2026-08-20T14:06:33+00:00"
+    },
+    "XRP": {
+        "state": "RIDING",
+        "symbol": "XRP",
+        "mic": null,
+        "entry_px": 13.74,
+        "peak_px": 13.74,
+        "updated_at": "2026-08-20T15:01:10+00:00"
     }
 }
