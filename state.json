@@ -3902,5 +3902,13 @@
         "entry_px": 10.9505,
         "peak_px": 10.9505,
         "updated_at": "2026-08-21T16:58:04+00:00"
+    },
+    "DIT": {
+        "state": "RIDING",
+        "symbol": "DIT",
+        "mic": null,
+        "entry_px": 70.55,
+        "peak_px": 70.55,
+        "updated_at": "2026-08-21T20:13:47+00:00"
     }
 }
