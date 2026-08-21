@@ -3886,5 +3886,13 @@
         "entry_px": 18.9,
         "peak_px": 18.9,
         "updated_at": "2026-08-21T15:35:31+00:00"
+    },
+    "ELMT": {
+        "state": "RIDING",
+        "symbol": "ELMT",
+        "mic": null,
+        "entry_px": 19.56,
+        "peak_px": 19.56,
+        "updated_at": "2026-08-21T16:19:46+00:00"
     }
 }
