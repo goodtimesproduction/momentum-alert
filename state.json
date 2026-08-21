@@ -3910,5 +3910,13 @@
         "entry_px": 70.55,
         "peak_px": 70.55,
         "updated_at": "2026-08-21T20:13:47+00:00"
+    },
+    "TKNS": {
+        "state": "RIDING",
+        "symbol": "TKNS",
+        "mic": null,
+        "entry_px": 25.895,
+        "peak_px": 25.895,
+        "updated_at": "2026-08-21T20:45:40+00:00"
     }
 }
