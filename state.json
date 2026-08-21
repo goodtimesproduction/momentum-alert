@@ -3894,5 +3894,13 @@
         "entry_px": 19.56,
         "peak_px": 19.56,
         "updated_at": "2026-08-21T16:19:46+00:00"
+    },
+    "MFI": {
+        "state": "RIDING",
+        "symbol": "MFI",
+        "mic": null,
+        "entry_px": 10.9505,
+        "peak_px": 10.9505,
+        "updated_at": "2026-08-21T16:58:04+00:00"
     }
 }
