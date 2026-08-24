@@ -3926,5 +3926,13 @@
         "entry_px": 21.217,
         "peak_px": 21.217,
         "updated_at": "2026-08-24T14:09:57+00:00"
+    },
+    "BRCC": {
+        "state": "RIDING",
+        "symbol": "BRCC",
+        "mic": null,
+        "entry_px": 10.28,
+        "peak_px": 10.28,
+        "updated_at": "2026-08-24T15:07:01+00:00"
     }
 }
