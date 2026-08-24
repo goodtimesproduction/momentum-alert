@@ -3918,5 +3918,13 @@
         "entry_px": 25.895,
         "peak_px": 25.9,
         "updated_at": "2026-08-24T10:52:56+00:00"
+    },
+    "TCAN": {
+        "state": "RIDING",
+        "symbol": "TCAN",
+        "mic": null,
+        "entry_px": 21.217,
+        "peak_px": 21.217,
+        "updated_at": "2026-08-24T14:09:57+00:00"
     }
 }
