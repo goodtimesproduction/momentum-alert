@@ -4006,5 +4006,29 @@
         "entry_px": 28.0094,
         "peak_px": 28.0094,
         "updated_at": "2026-08-25T19:52:15+00:00"
+    },
+    "IGAIX": {
+        "state": "RIDING",
+        "symbol": "IGAIX",
+        "mic": null,
+        "entry_px": 61.28,
+        "peak_px": 61.28,
+        "updated_at": "2026-08-25T21:50:00+00:00"
+    },
+    "IGIFX": {
+        "state": "RIDING",
+        "symbol": "IGIFX",
+        "mic": null,
+        "entry_px": 61.43,
+        "peak_px": 61.43,
+        "updated_at": "2026-08-25T21:50:01+00:00"
+    },
+    "IGAAX": {
+        "state": "RIDING",
+        "symbol": "IGAAX",
+        "mic": null,
+        "entry_px": 61.31,
+        "peak_px": 61.31,
+        "updated_at": "2026-08-25T21:50:01+00:00"
     }
 }
