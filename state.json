@@ -3990,5 +3990,13 @@
         "entry_px": 121.74,
         "peak_px": 121.74,
         "updated_at": "2026-08-25T17:02:52+00:00"
+    },
+    "EXOD": {
+        "state": "RIDING",
+        "symbol": "EXOD",
+        "mic": null,
+        "entry_px": 10.0471,
+        "peak_px": 10.0471,
+        "updated_at": "2026-08-25T17:52:03+00:00"
     }
 }
