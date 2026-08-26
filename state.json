@@ -4046,5 +4046,13 @@
         "entry_px": 34.685,
         "peak_px": 34.685,
         "updated_at": "2026-08-26T13:33:32+00:00"
+    },
+    "BZ": {
+        "state": "RIDING",
+        "symbol": "BZ",
+        "mic": null,
+        "entry_px": 19.025,
+        "peak_px": 19.025,
+        "updated_at": "2026-08-26T14:33:52+00:00"
     }
 }
