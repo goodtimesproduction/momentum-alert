@@ -4054,5 +4054,13 @@
         "entry_px": 19.025,
         "peak_px": 19.025,
         "updated_at": "2026-08-26T14:33:52+00:00"
+    },
+    "BHVN": {
+        "state": "RIDING",
+        "symbol": "BHVN",
+        "mic": null,
+        "entry_px": 18.05,
+        "peak_px": 18.05,
+        "updated_at": "2026-08-26T18:10:02+00:00"
     }
 }
