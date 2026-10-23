@@ -2,6 +2,10 @@ name: overnight-momentum-experimental
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/overnight-momentum.yml'
   pull_request:
     paths:
       - 'overnight_momentum.php'
@@ -20,8 +24,7 @@ concurrency:
 
 jobs:
   overnight:
-    # Explicit opt-in required. Without it, even scheduled runs do not scan or alert.
-    if: github.event_name != 'schedule' || vars.OVERNIGHT_ENABLED == 'true'
+    # Schedule is armed; live scan requires all five provider/notification secrets.
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
@@ -32,8 +35,31 @@ jobs:
           extensions: curl
       - name: Offline unit tests
         run: php tests/overnight_test.php
-      - name: Extended-hours scan
+      - name: Check provider secrets (names only)
+        id: preflight
         if: github.event_name != 'pull_request'
+        env:
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        shell: bash
+        run: |
+          missing=()
+          for secret in ALPACA_KEY_ID ALPACA_SECRET_KEY FMP_API_KEY TG_BOT_TOKEN TG_CHAT_ID; do
+            if [[ -z "${!secret}" ]]; then missing+=("$secret"); fi
+          done
+          if (( ${#missing[@]} > 0 )); then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Overnight scan not ready. Configure GitHub Actions secrets: ${missing[*]}"
+            echo "Overnight scanner waiting for credentials. Existing stock alerts untouched."
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+            echo "Overnight credentials available; scanner will run during valid NY trading windows."
+          fi
+      - name: Extended-hours scan
+        if: github.event_name != 'pull_request' && github.event_name != 'push' && steps.preflight.outputs.ready == 'true'
         id: scan
         continue-on-error: true
         env:
@@ -44,7 +70,7 @@ jobs:
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: php overnight_momentum.php
       - name: Persist independent state
-        if: github.event_name != 'pull_request' && always() && steps.scan.outcome != 'skipped'
+        if: always() && steps.scan.outcome != 'skipped' && steps.preflight.outputs.ready == 'true'
         run: |
           git config user.name "overnight-radar"
           git config user.email "overnight-radar@users.noreply.github.com"
@@ -55,5 +81,5 @@ jobs:
             git push origin HEAD:main
           fi
       - name: Surface API or Telegram failures
-        if: github.event_name != 'pull_request' && steps.scan.outcome == 'failure'
+        if: steps.scan.outcome == 'failure'
         run: exit 1
