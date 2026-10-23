@@ -58,6 +58,23 @@ jobs:
             echo "ready=true" >> "$GITHUB_OUTPUT"
             echo "Overnight credentials available; scanner will run during valid NY trading windows."
           fi
+      - name: Verify Alpaca IEX access (no alerts)
+        if: github.event_name == 'push' && steps.preflight.outputs.ready == 'true'
+        env:
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+        shell: bash
+        run: |
+          status=$(curl --silent --show-error --output "$RUNNER_TEMP/overnight-alpaca-probe.json" \
+            --write-out '%{http_code}' \
+            --header "APCA-API-KEY-ID: $ALPACA_KEY_ID" \
+            --header "APCA-API-SECRET-KEY: $ALPACA_SECRET_KEY" \
+            'https://data.alpaca.markets/v2/stocks/snapshots?symbols=SPY&feed=iex')
+          if [[ "$status" != '200' ]]; then
+            echo "::error::Alpaca IEX market data probe returned HTTP $status"
+            exit 1
+          fi
+          python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); assert isinstance(d,dict) and isinstance(d.get("SPY"),dict), "No SPY snapshot"; print("Alpaca IEX authenticated successfully (SPY snapshot); no alert sent")' "$RUNNER_TEMP/overnight-alpaca-probe.json"
       - name: Extended-hours scan
         if: github.event_name != 'pull_request' && github.event_name != 'push' && steps.preflight.outputs.ready == 'true'
         id: scan
