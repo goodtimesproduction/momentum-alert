@@ -1,0 +1,59 @@
+name: overnight-momentum-experimental
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'overnight_momentum.php'
+      - 'tests/overnight_test.php'
+      - '.github/workflows/overnight-momentum.yml'
+  schedule:
+    - cron: '7,22,37,52 7-10,14-19 * * 1-5'
+      timezone: 'America/New_York'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: overnight-momentum
+  cancel-in-progress: false
+
+jobs:
+  overnight:
+    # Explicit opt-in required. Without it, even scheduled runs do not scan or alert.
+    if: github.event_name != 'schedule' || vars.OVERNIGHT_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: curl
+      - name: Offline unit tests
+        run: php tests/overnight_test.php
+      - name: Extended-hours scan
+        if: github.event_name != 'pull_request'
+        id: scan
+        continue-on-error: true
+        env:
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          ALPACA_KEY_ID: ${{ secrets.ALPACA_KEY_ID }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: php overnight_momentum.php
+      - name: Persist independent state
+        if: github.event_name != 'pull_request' && always() && steps.scan.outcome != 'skipped'
+        run: |
+          git config user.name "overnight-radar"
+          git config user.email "overnight-radar@users.noreply.github.com"
+          git add overnight_state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "overnight state [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Surface API or Telegram failures
+        if: github.event_name != 'pull_request' && steps.scan.outcome == 'failure'
+        run: exit 1
