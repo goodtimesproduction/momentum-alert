@@ -1,1 +1,14 @@
-[]
+{
+    "KD": {
+        "close_date": "2026-11-04",
+        "early_price": 17.715,
+        "close_price": 17.715,
+        "signals": []
+    },
+    "OPRT": {
+        "close_date": "2026-11-04",
+        "early_price": 12.52,
+        "close_price": 12.52,
+        "signals": []
+    }
+}
