@@ -2,7 +2,7 @@ name: momentum-alert
 
 on:
   schedule:
-    - cron: '*/30 7-21 * * 1-5'
+    - cron: '7,37 7-21 * * 1-5'
   workflow_dispatch:
 
 permissions:
@@ -15,9 +15,10 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
