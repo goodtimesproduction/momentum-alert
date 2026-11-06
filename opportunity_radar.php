@@ -44,7 +44,8 @@ function opAnalyze(array $raw, DateTimeImmutable $now): ?array {
     krsort($bars);
     $bars = array_values($bars);
     if (count($bars) < 25) return null;
-    $today = $now->setTimezone(new DateTimeZone('America/New_York'))->format('Y-m-d');
+    $localNow = $now->setTimezone(new DateTimeZone('America/New_York'));
+    $today = $localNow->format('Y-m-d');
     $age = (int)(new DateTimeImmutable($bars[0]['date'] . ' 00:00:00', new DateTimeZone('America/New_York')))
         ->diff(new DateTimeImmutable($today . ' 00:00:00', new DateTimeZone('America/New_York')))->format('%r%a');
     if ($age < 0 || $age > 4) return null; // stale/future EOD data must never look current
@@ -185,6 +186,11 @@ function opMain(): void {
     }
     $now = new DateTimeImmutable('now', new DateTimeZone('America/New_York'));
     $today = $now->format('Y-m-d');
+    // EOD only: never classify unfinished same-day candles as confirmed closes.
+    if ((int)$now->format('Hi') < 1630 || (int)$now->format('N') > 5) {
+        echo "Outside EOD processing window; no alerts\n";
+        return;
+    }
     $regime = 'non déterminé (SPY indisponible)';
     try { $regime = opMarketRegime(opApi('SPY', $key, $now), $now); }
     catch (Throwable $e) { fwrite(STDERR, "[SPY] " . $e->getMessage() . "\n"); }
@@ -192,7 +198,7 @@ function opMain(): void {
     foreach ($symbols as $symbol) {
         try {
             $a = opAnalyze(opApi($symbol, $key, $now), $now);
-            if ($a === null) continue;
+            if ($a === null || $a['date'] !== $today) continue;
             $count['usable']++;
             if ($a['candidate']) $count['candidates']++;
             $record = $state[$symbol] ?? [];
