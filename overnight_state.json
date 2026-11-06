@@ -40,5 +40,8 @@
         "early_price": 17.24,
         "close_price": 17.24,
         "signals": []
+    },
+    "_meta": {
+        "last_quality_date": "2026-11-06"
     }
 }
