@@ -51,11 +51,6 @@ const MAX_TRACKED_PER_RUN = 8; // suivi rotatif, pas un ordre stop en temps rée
 
 const STATE_PATH = __DIR__ . '/state.json';
 
-if (TD_API_KEY === '' || FMP_API_KEY === '' || TG_BOT_TOKEN === '' || TG_CHAT_ID === '') {
-    fwrite(STDERR, "Cles manquantes (TD_API_KEY / FMP_API_KEY / TG_BOT_TOKEN / TG_CHAT_ID).\n");
-    exit(1);
-}
-
 // ============================================================
 // 2) ETAT
 // ============================================================
@@ -226,7 +221,11 @@ function trackRiding(string $key, array &$allState): void {
 // ============================================================
 // 9) ORCHESTRATION
 // ============================================================
-$allState = loadAllState();
+function breakoutMain(): void {
+    if (TD_API_KEY === '' || FMP_API_KEY === '' || TG_BOT_TOKEN === '' || TG_CHAT_ID === '') {
+        throw new RuntimeException('Clés manquantes : TD_API_KEY / FMP_API_KEY / TG_BOT_TOKEN / TG_CHAT_ID');
+    }
+    $allState = loadAllState();
 
 // (A) US via FMP : 1 appel, puis filtre qualite
 foreach (fetchTopGainers() as $g) {
@@ -266,3 +265,9 @@ foreach ($due as $key) {
 }
 
 saveAllState($allState);
+
+}
+if (realpath($_SERVER['SCRIPT_FILENAME'] ?? '') === __FILE__) {
+    try { breakoutMain(); }
+    catch (Throwable $e) { fwrite(STDERR, "[BREAKOUT ERROR] " . $e->getMessage() . "\n"); exit(1); }
+}
