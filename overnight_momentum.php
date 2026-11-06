@@ -181,7 +181,7 @@ function omMain(): void {
         $row = $state[$s] ?? [];
         $signals = omEvaluate($row,$phase,$tick,$now);
         foreach ($signals as $signal) {
-            $tag=['close'=>'🔎 RADAR FIN DE SÉANCE','after'=>'🌙 BOOST AFTER-HOURS','pre'=>'🌅 PRÉOUVERTURE À EXAMINER','open'=>'🚀 OUVERTURE CONFIRMÉE'][$signal['phase']];
+            $tag=['close'=>'⚡ MOMENTUM | FIN DE SÉANCE','after'=>'🌙 MOMENTUM | AFTER-HOURS','pre'=>'🌅 MOMENTUM | PRÉOUVERTURE','open'=>'🚀 MOMENTUM | OUVERTURE VALIDÉE'][$signal['phase']];
             $name=htmlspecialchars($s, ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8');
             $msg="<b>$tag : $name</b>\nCours IEX observé : <b>".number_format($tick['price'],2,'.','')." $</b>".
                 "\nHausse sur la référence : <b>+".number_format($signal['gain'],1,'.','')." %</b>".
@@ -193,6 +193,18 @@ function omMain(): void {
             $row['signals'][$signal['phase']]=$day; $sent++;
         }
         $state[$s]=$row;
+    }
+    // Un scan sans données valides n'est pas un signal d'absence d'opportunités.
+    // Bilan de qualité unique par jour en after-hours, sans risque de doublon.
+    if ($phase === 'after' && $qualified === 0 && ($state['_meta']['last_quality_date'] ?? '') !== $day) {
+        $note = "📡 <b>MOMENTUM | QUALITÉ DU SCAN</b>\n"
+            . "Aucun cours IEX suffisamment frais et liquide sur les ".$stale." titres examinés.\n"
+            . "Les signaux overnight sont incomplets, pas forcément inexistants.\n"
+            . "Le radar classique BREAKOUT continue indépendamment.";
+        if (omNotify($tg, $chat, $note)) {
+            $state['_meta']['last_quality_date'] = $day;
+            $sent++;
+        } else { $errors++; }
     }
     omSave($state);
     echo json_encode(['phase'=>$phase,'universe'=>count($symbols),'usable'=>$qualified,'stale_or_illiquid'=>$stale,'telegram_ok'=>$sent,'errors'=>$errors], JSON_UNESCAPED_UNICODE)."\n";
