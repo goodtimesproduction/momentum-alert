@@ -30,10 +30,12 @@ jobs:
           php -l opportunity_radar.php
           php -l tests/overnight_test.php
           php -l tests/opportunity_test.php
+          php -l tests/breakout_test.php
       - name: Unit tests (no network, no secrets)
         run: |
           php tests/overnight_test.php
           php tests/opportunity_test.php
+          php tests/breakout_test.php
       - name: Validate watchlist data
         run: |
           python3 -c "import json; a=json.load(open('opportunity_watchlist.json')); assert isinstance(a,list) and 0<len(a)<=15 and len(a)==len(set(a)); print('Curated opportunity watchlist:',len(a))"
