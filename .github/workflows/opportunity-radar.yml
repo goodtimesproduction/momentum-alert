@@ -1,0 +1,64 @@
+name: opportunity-radar-v2-2
+
+on:
+  schedule:
+    - cron: '47 16 * * 1-5'
+      timezone: 'America/New_York'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: opportunity-radar-v2-2
+  cancel-in-progress: false
+
+jobs:
+  opportunity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: curl
+      - name: PHP syntax checks
+        run: |
+          php -l opportunity_radar.php
+          php -l momentum_alert.php
+          php -l overnight_momentum.php
+      - name: Offline unit tests
+        run: |
+          php tests/opportunity_test.php
+          php tests/breakout_test.php
+          php tests/overnight_test.php
+      - name: Verify required credentials without revealing them
+        shell: bash
+        env:
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: |
+          for key in FMP_API_KEY TG_BOT_TOKEN TG_CHAT_ID; do
+            if [[ -z "${!key}" ]]; then
+              echo "::error::Missing $key. Opportunity radar did not send alerts."
+              exit 1
+            fi
+          done
+      - name: Scan EOD correction signals
+        env:
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: php opportunity_radar.php
+      - name: Persist independent state
+        run: |
+          git config user.name "opportunity-radar"
+          git config user.email "opportunity-radar@users.noreply.github.com"
+          git add opportunity_state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "opportunity state [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

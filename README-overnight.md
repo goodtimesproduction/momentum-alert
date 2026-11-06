@@ -1,6 +1,6 @@
 # Overnight Momentum — extension expérimentale
 
-**Statut : testé localement sur données synthétiques, non connecté aux API, non déployé.**
+**Statut au 6 novembre 2026 : workflow déployé, scans actifs avec couverture IEX partielle. Aucun signal Telegram n'est garanti.**
 
 Ce module ne donne **aucun ordre de trading**. Il ne modifie ni `momentum_alert.php` ni `state.json` : son historique distinct est `overnight_state.json`.
 
@@ -21,13 +21,13 @@ Toutes les données utilisées proviennent du flux **Alpaca IEX gratuit**, dont 
 
 La découverte des titres repose sur les plus fortes hausses FMP à partir de +2 % (pas sur la totalité des titres US), plus une watchlist facultative `overnight_watchlist.json`. Un titre gagnant après la clôture, mais absent des deux, ne sera pas repéré. Le fichier d'état conserve au maximum 60 symboles et expire les anciens signaux après quatre jours calendaires. Les horaires partiels, les jours fériés et les données manquantes doivent être testés avant toute utilisation réelle.
 
-## Installation après revue
+## Configuration et maintenance
 
-1. Garder le bot V2.1 existant sur `main` sans changement. Ajouter les six fichiers de cette extension, dont son état initial `{}` et son workflow séparé.
+1. L'extension est déjà déployée sur `main`. Préserver les fichiers d'état et tester les modifications sur une branche dédiée.
 2. Créer un compte Alpaca donnant accès à **Market Data** avec la source `iex`. Ajouter ses identifiants dans GitHub **Settings → Secrets and variables → Actions** sous les noms **`ALPACA_KEY_ID`** et **`ALPACA_SECRET_KEY`**. Ne jamais les copier dans du code, un commit ou un chat.
 3. Réutiliser `FMP_API_KEY`, `TG_BOT_TOKEN` et `TG_CHAT_ID` existants. Vérifier qu'ils sont encore valables et que le plan FMP autorise `biggest-gainers`.
 4. Lancer d'abord `php tests/overnight_test.php` (aucun accès réseau), puis effectuer une première séance en test manuel via `workflow_dispatch` pendant une phase suivie. Les sessions sans transaction IEX suffisamment récente peuvent n'envoyer aucune alerte : cela ne prouve pas l'absence de mouvements.
-5. Pour l'automatiser **seulement après validation**, créer la variable GitHub Actions `OVERNIGHT_ENABLED=true`. Sinon, les déclenchements `schedule` sont **désactivés au niveau du job**.
+5. Les déclenchements planifiés sont actifs dans le workflow actuel : **la variable `OVERNIGHT_ENABLED` n'est pas utilisée**. L'absence d'alertes doit être diagnostiquée dans les journaux, sans supposer que le scanner est désactivé.
 6. Observer les résultats pendant une à deux semaines. Une fois l'intérêt vérifié, envisager un flux SIP consolidé ou un abonnement adapté pour une meilleure couverture, puis effectuer des backtests sans biais de sélection.
 
 ## Calendrier GitHub et limites

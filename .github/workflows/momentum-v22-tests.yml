@@ -1,0 +1,41 @@
+name: momentum-v2-2-quality
+
+on:
+  pull_request:
+    paths:
+      - 'momentum_alert.php'
+      - 'overnight_momentum.php'
+      - 'opportunity_radar.php'
+      - 'tests/**'
+      - '.github/workflows/**'
+      - 'opportunity_watchlist.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: curl
+      - name: PHP lint
+        run: |
+          php -l momentum_alert.php
+          php -l overnight_momentum.php
+          php -l opportunity_radar.php
+          php -l tests/overnight_test.php
+          php -l tests/opportunity_test.php
+          php -l tests/breakout_test.php
+      - name: Unit tests (no network, no secrets)
+        run: |
+          php tests/overnight_test.php
+          php tests/opportunity_test.php
+          php tests/breakout_test.php
+      - name: Validate watchlist data
+        run: |
+          python3 -c "import json; a=json.load(open('opportunity_watchlist.json')); assert isinstance(a,list) and 0<len(a)<=15 and len(a)==len(set(a)); print('Curated opportunity watchlist:',len(a))"
