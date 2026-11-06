@@ -1,13 +1,13 @@
 <?php
 /**
- * momentum_alert.php  —  V2.1 (radar marche + filtre qualite + suivi revente)
+ * momentum_alert.php  —  V2.2 (radar breakout + suivi indicatif et rotatif)
  * -------------------------------------------------------------
  * DETECTION (entree) :
  *   - US  : FMP /biggest-gainers (1 appel) -> FILTRE QUALITE -> candidats.
  *   - EU  : watchlist optionnelle -> hausse sur N jours via Twelve Data.
- * SUIVI (revente) :
+ * SUIVI (observation uniquement) :
  *   - Position en RIDING : prix en direct (Twelve Data), suivi du pic,
- *     alerte VEND si repli >= TRAILING_STOP.
+ *     alerte de repli à vérifier si >= TRAILING_STOP.
  *
  * Cles via Secrets GitHub : TD_API_KEY, FMP_API_KEY, TG_BOT_TOKEN, TG_CHAT_ID
  * Etat dans state.json.
@@ -46,7 +46,8 @@ const LOOKBACK_DAYS     = 5;
 
 // --- Suivi / revente (commun) ---
 const TRAILING_STOP = 12.0;      // % de repli depuis le pic -> "VEND"
-const REQ_SLEEP_SEC = 8;         // pause entre appels Twelve Data
+const REQ_SLEEP_SEC = 8; // Respecter les crédits Twelve Data
+const MAX_TRACKED_PER_RUN = 8; // suivi rotatif, pas un ordre stop en temps réel
 
 const STATE_PATH = __DIR__ . '/state.json';
 
@@ -169,11 +170,13 @@ function stateKey(string $symbol, ?string $mic): string {
 function maybeEnter(string $symbol, ?string $mic, float $price, float $pct, array &$allState): void {
     $key = stateKey($symbol, $mic);
     if (($allState[$key]['state'] ?? 'IDLE') !== 'IDLE') return;
+    if (strtotime((string)($allState[$key]['cooldown_until'] ?? '')) > time()) return;
     $label = $mic ? "$symbol ($mic)" : $symbol;
     $sent = sendTelegram(sprintf(
-        "\xF0\x9F\x9A\x80 <b>%s</b> devient interessante\n".
-        "Hausse <b>+%.1f%%</b>\nPrix : <b>%.2f</b>\n".
-        "\xF0\x9F\x91\x89 Suivi du repli active (sortie si -%.0f%% du pic).",
+        "🚀 <b>BREAKOUT | %s</b>\n".
+        "Hausse fournisseur : <b>+%.1f%%</b>\nCours observé : <b>%.2f</b>\n".
+        "🔎 Seuil de surveillance : repli de -%.0f%% du pic, sans ordre automatique.\n".
+        "⚠️ Données potentiellement différées : ce suivi n'est PAS un stop de courtier.",
         $label, $pct, $price, TRAILING_STOP
     ));
     if ($sent) {
@@ -186,6 +189,8 @@ function maybeEnter(string $symbol, ?string $mic, float $price, float $pct, arra
 
 function trackRiding(string $key, array &$allState): void {
     $s = $allState[$key];
+    // Une requête échouée doit aussi compter pour assurer le roulement équitable.
+    $allState[$key]['last_checked_at'] = gmdate('c');
     $price = fetchPrice($s['symbol'], $s['mic'] ?? null);
     if ($price === null) return;
 
@@ -197,15 +202,17 @@ function trackRiding(string $key, array &$allState): void {
         $entry = (float) $s['entry_px'];
         $pl = (($price - $entry) / $entry) * 100.0;
         $sent = sendTelegram(sprintf(
-            "\xF0\x9F\x94\xBB <b>%s</b> — VEND\n".
-            "Repli de <b>-%.1f%%</b> depuis le pic (%.2f -> %.2f)\n".
-            "Resultat depuis l'alerte : <b>%+.1f%%</b>",
+            "🔻 <b>BREAKOUT | %s : REPLI À VÉRIFIER</b>\n".
+            "Repli observé : <b>-%.1f%%</b> depuis le pic (%.2f → %.2f)\n".
+            "Variation théorique depuis le premier signal : <b>%+.1f%%</b>\n".
+            "⚠️ Vérifie un cours actuel auprès du courtier. Ni ordre de vente, ni stop garanti.",
             $label, $drop, $peak, $price, $pl
         ));
         if ($sent) {
             $allState[$key] = [
                 'state' => 'IDLE', 'symbol' => $s['symbol'], 'mic' => $s['mic'] ?? null,
                 'entry_px' => null, 'peak_px' => null, 'updated_at' => date('c'),
+                'cooldown_until' => gmdate('c', time() + 48 * 3600),
             ];
         }
     } else {
@@ -241,9 +248,17 @@ foreach (EU_WATCHLIST as $e) {
     sleep(REQ_SLEEP_SEC);
 }
 
-// (C) Suivi des positions en RIDING (US + EU)
-foreach (array_keys($allState) as $key) {
-    if (($allState[$key]['state'] ?? '') !== 'RIDING') continue;
+// (C) Suivi rotatif des titres signalés, pour respecter les quotas de l'API.
+// IMPORTANT : ce mécanisme ne constitue ni un stop de protection ni du trading en temps réel.
+$keys = array_values(array_filter(array_keys($allState),
+    fn(string $key): bool => ($allState[$key]['state'] ?? '') === 'RIDING'));
+usort($keys, fn(string $a, string $b): int => strcmp(
+    (string)($allState[$a]['last_checked_at'] ?? $allState[$a]['updated_at'] ?? ''),
+    (string)($allState[$b]['last_checked_at'] ?? $allState[$b]['updated_at'] ?? '')
+));
+$due = array_slice($keys, 0, MAX_TRACKED_PER_RUN);
+fwrite(STDOUT, sprintf("[BREAKOUT] %d suivis actifs, %d contrôlés ce passage. Pas un stop temps réel.\n", count($keys), count($due)));
+foreach ($due as $key) {
     trackRiding($key, $allState);
     sleep(REQ_SLEEP_SEC);
 }
