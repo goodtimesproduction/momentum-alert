@@ -79,6 +79,7 @@ function opAnalyze(array $raw, DateTimeImmutable $now): ?array {
 }
 
 function opDecide(array $analysis, array &$record, string $today): ?string {
+    if (($record['last_sent'] ?? null) === $today) return null;
     if (!$analysis['candidate']) {
         if ($analysis['drawdown'] < 10.0) $record = [];
         return null;
@@ -103,6 +104,21 @@ function opMarketRegime(array $raw, DateTimeImmutable $now): string {
     $data = opAnalyze($raw, $now);
     if ($data === null) return 'non déterminé (SPY indisponible)';
     return $data['close'] >= $data['ma5'] ? 'SPY au-dessus de sa MM5' : 'SPY sous sa MM5, prudence';
+}
+
+
+/** Compact EOD digest, even when nothing meets the strict entry criteria. */
+function opDigest(array $ranked, string $date, string $regime): string {
+    usort($ranked, static fn(array $x, array $y): int => $y['drawdown'] <=> $x['drawdown']);
+    $text = "📊 <b>OPPORTUNITY | BILAN DU " . htmlspecialchars($date, ENT_QUOTES, 'UTF-8') . "</b>\n"
+        . "Plus fortes corrections de notre liste (60 séances) :";
+    foreach (array_slice($ranked, 0, 3) as $item) {
+        $text .= "\n• " . htmlspecialchars($item['symbol'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')
+            . " : -" . number_format($item['drawdown'], 1, '.', '') . '%';
+    }
+    return $text . "\nAucun nouveau signal technique confirmé à notifier."
+        . "\n" . htmlspecialchars($regime, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8')
+        . "\nSurveillance quotidienne, pas un conseil d'achat.";
 }
 
 function opMessage(string $symbol, array $a, string $kind, string $regime): string {
@@ -195,11 +211,13 @@ function opMain(): void {
     try { $regime = opMarketRegime(opApi('SPY', $key, $now), $now); }
     catch (Throwable $e) { fwrite(STDERR, "[SPY] " . $e->getMessage() . "\n"); }
     $count = ['watched'=>count($symbols), 'usable'=>0, 'candidates'=>0, 'sent'=>0, 'errors'=>0];
+    $ranking = [];
     foreach ($symbols as $symbol) {
         try {
             $a = opAnalyze(opApi($symbol, $key, $now), $now);
             if ($a === null || $a['date'] !== $today) continue;
             $count['usable']++;
+            $ranking[] = ['symbol'=>$symbol, 'drawdown'=>$a['drawdown']];
             if ($a['candidate']) $count['candidates']++;
             $record = $state[$symbol] ?? [];
             if (!is_array($record)) $record = [];
@@ -219,6 +237,16 @@ function opMain(): void {
         } catch (Throwable $e) {
             $count['errors']++;
             fwrite(STDERR, "[$symbol] " . $e->getMessage() . "\n");
+        }
+    }
+    if ($count['sent'] === 0 && $count['errors'] === 0 && count($ranking) >= 3 &&
+        ($state['_meta']['last_digest_date'] ?? null) !== $today) {
+        if (opSend($token, $chat, opDigest($ranking, $today, $regime))) {
+            $state['_meta']['last_digest_date'] = $today;
+            $count['sent']++;
+        } else {
+            $count['errors']++;
+            fwrite(STDERR, "Daily opportunity digest delivery failed\n");
         }
     }
     opSaveState($state);
