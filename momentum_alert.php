@@ -155,9 +155,11 @@ function sendTelegram(string $text): bool {
     $resp = curl_exec($ch);
     $http = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-    fwrite(STDOUT, "[Telegram] HTTP $http | reponse=$resp\n");
     $d = json_decode($resp ?: '', true);
-    return $http === 200 && is_array($d) && ($d['ok'] ?? false) === true;
+    $ok = $http === 200 && is_array($d) && ($d['ok'] ?? false) === true;
+    // Ne jamais conserver le contenu des notifications ni les identifiants Telegram dans les logs publics.
+    fwrite(STDOUT, "[Telegram] HTTP $http | statut=" . ($ok ? 'ok' : 'échec') . "\n");
+    return $ok;
 }
 
 // ============================================================
@@ -229,7 +231,7 @@ $allState = loadAllState();
 // (A) US via FMP : 1 appel, puis filtre qualite
 foreach (fetchTopGainers() as $g) {
     $sym = $g['symbol'] ?? '';
-    if ($sym === '' || !isQualityGainer($g)) continue;
+    if (!is_string($sym) || preg_match('/^[A-Z][A-Z0-9.\\-]{0,12}$/D', $sym) !== 1 || !isQualityGainer($g)) continue;
     maybeEnter($sym, null, (float) $g['price'], parsePct($g['changesPercentage'] ?? 0), $allState);
 }
 
