@@ -34,10 +34,12 @@ expect(str_contains(opMessage('NVDA',$a,'WATCH','SPY sous sa MM5'), 'pas de cota
 $state = [];
 expect(opDecide($a, $state, '2026-11-06')==='REBOUND', 'first rebound');
 opMarkSent($state,'REBOUND','2026-11-06');
-expect(opDecide($a, $state, '2026-11-06')==='WATCH', 'watch can follow rebound');
-opMarkSent($state,'WATCH','2026-11-06');
-expect(opDecide($a, $state, '2026-11-07')===null, 'no duplicate next day');
-expect(opDecide($a, $state, '2026-11-20')==='WATCH', '14 day rearm');
+expect(opDecide($a, $state, '2026-11-06')===null, 'never send two signals to same symbol on the same day');
+expect(opDecide($a, $state, '2026-11-07')==='WATCH', 'watch can follow rebound on another date');
+opMarkSent($state,'WATCH','2026-11-07');
+expect(opDecide($a, $state, '2026-11-08')===null, 'watch cooldown');
+expect(opDecide($a, $state, '2026-11-21')==='WATCH', '14 day rearm');
+expect(str_contains(opDigest([['symbol'=>'MSFT','drawdown'=>17.4],['symbol'=>'AMD','drawdown'=>24.1],['symbol'=>'GOOGL','drawdown'=>10.0]],'2026-11-06','SPY sous sa MM5'),'AMD : -24.1%'), 'EOD digest sorts largest correction');
 $down = $bars;
 $down[0]['close'] = 77;
 $down[0]['high'] = 82;
