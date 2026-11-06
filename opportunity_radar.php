@@ -38,12 +38,12 @@ function opAnalyze(array $raw, DateTimeImmutable $now): ?array {
         if (!preg_match('/^\d{4}-\d{2}-\d{2}$/D', $date) ||
             !checkdate((int)substr($date, 5, 2), (int)substr($date, 8, 2), (int)substr($date, 0, 4)) ||
             !is_finite($close) || !is_finite($high) || !is_finite($low) || !is_finite($volume) ||
-            $close <= 0 || $low <= 0 || $high < max($low, $close) || $volume <= 0) continue;
+            $close <= 0 || $low <= 0 || $close < $low || $high < max($low, $close) || $volume <= 0) continue;
         $bars[$date] = ['date'=>$date,'close'=>$close,'high'=>$high,'low'=>$low,'volume'=>$volume];
     }
     krsort($bars);
     $bars = array_values($bars);
-    if (count($bars) < 25) return null;
+    if (count($bars) < 60) return null;
     $localNow = $now->setTimezone(new DateTimeZone('America/New_York'));
     $today = $localNow->format('Y-m-d');
     $age = (int)(new DateTimeImmutable($bars[0]['date'] . ' 00:00:00', new DateTimeZone('America/New_York')))
