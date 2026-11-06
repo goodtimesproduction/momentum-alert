@@ -31,6 +31,7 @@ jobs:
       - name: Offline unit tests
         run: |
           php tests/opportunity_test.php
+          php tests/breakout_test.php
           php tests/overnight_test.php
       - name: Verify required credentials without revealing them
         shell: bash
