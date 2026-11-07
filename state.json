@@ -1629,7 +1629,8 @@
         "mic": null,
         "entry_px": 36.16,
         "peak_px": 37.82,
-        "updated_at": "2026-11-06T01:45:18+00:00"
+        "updated_at": "2026-11-07T00:29:47+00:00",
+        "last_checked_at": "2026-11-07T00:29:47+00:00"
     },
     "PTLE": {
         "state": "IDLE",
@@ -1845,7 +1846,8 @@
         "mic": null,
         "entry_px": 34.415,
         "peak_px": 35.145,
-        "updated_at": "2026-11-06T01:45:26+00:00"
+        "updated_at": "2026-11-07T00:29:55+00:00",
+        "last_checked_at": "2026-11-07T00:29:55+00:00"
     },
     "CDNA": {
         "state": "IDLE",
@@ -1892,8 +1894,9 @@
         "symbol": "XNCR",
         "mic": null,
         "entry_px": 31.47,
-        "peak_px": 35.03,
-        "updated_at": "2026-11-06T01:45:34+00:00"
+        "peak_px": 35.755,
+        "updated_at": "2026-11-07T00:30:04+00:00",
+        "last_checked_at": "2026-11-07T00:30:03+00:00"
     },
     "IREN": {
         "state": "RIDING",
@@ -2005,7 +2008,8 @@
         "mic": null,
         "entry_px": 43.86,
         "peak_px": 45.67,
-        "updated_at": "2026-11-06T01:45:43+00:00"
+        "updated_at": "2026-11-07T00:30:12+00:00",
+        "last_checked_at": "2026-11-07T00:30:12+00:00"
     },
     "SCA": {
         "state": "IDLE",
@@ -2061,7 +2065,8 @@
         "mic": null,
         "entry_px": 611.44,
         "peak_px": 692.85999,
-        "updated_at": "2026-11-06T01:45:51+00:00"
+        "updated_at": "2026-11-07T00:30:20+00:00",
+        "last_checked_at": "2026-11-07T00:30:20+00:00"
     },
     "NIPG": {
         "state": "IDLE",
@@ -2077,7 +2082,8 @@
         "mic": null,
         "entry_px": 103.06,
         "peak_px": 104.37,
-        "updated_at": "2026-11-06T01:45:59+00:00"
+        "updated_at": "2026-11-07T00:30:28+00:00",
+        "last_checked_at": "2026-11-07T00:30:28+00:00"
     },
     "NDLS": {
         "state": "RIDING",
@@ -2085,7 +2091,8 @@
         "mic": null,
         "entry_px": 13.42,
         "peak_px": 15.78,
-        "updated_at": "2026-11-06T01:46:07+00:00"
+        "updated_at": "2026-11-07T00:30:36+00:00",
+        "last_checked_at": "2026-11-07T00:30:36+00:00"
     },
     "RNG": {
         "state": "IDLE",
@@ -2101,7 +2108,8 @@
         "mic": null,
         "entry_px": 241.22,
         "peak_px": 296.555,
-        "updated_at": "2026-11-06T01:46:15+00:00"
+        "updated_at": "2026-11-07T00:30:44+00:00",
+        "last_checked_at": "2026-11-07T00:30:44+00:00"
     },
     "YYAI": {
         "state": "IDLE",
