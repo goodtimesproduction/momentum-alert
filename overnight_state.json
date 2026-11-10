@@ -1,46 +1,4 @@
 {
-    "KD": {
-        "close_date": "2026-11-05",
-        "early_price": 16.15,
-        "close_price": 16.15,
-        "signals": []
-    },
-    "OPRT": {
-        "close_date": "2026-11-05",
-        "early_price": 11.71,
-        "close_price": 11.71,
-        "signals": []
-    },
-    "APP": {
-        "close_date": "2026-11-05",
-        "early_price": 353.67,
-        "close_price": 353.67,
-        "signals": []
-    },
-    "ADMA": {
-        "close_date": "2026-11-05",
-        "early_price": 13.195,
-        "close_price": 13.195,
-        "signals": []
-    },
-    "XERS": {
-        "close_date": "2026-11-05",
-        "early_price": 13.115,
-        "close_price": 13.115,
-        "signals": []
-    },
-    "MGNI": {
-        "close_date": "2026-11-05",
-        "early_price": 27.665,
-        "close_price": 27.665,
-        "signals": []
-    },
-    "SSG": {
-        "close_date": "2026-11-05",
-        "early_price": 17.24,
-        "close_price": 17.24,
-        "signals": []
-    },
     "_meta": {
         "last_quality_date": "2026-11-09"
     }
