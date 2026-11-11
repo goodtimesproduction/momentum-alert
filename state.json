@@ -4608,20 +4608,22 @@
         "updated_at": "2026-11-04T21:10:21+00:00"
     },
     "BALY": {
-        "state": "RIDING",
+        "state": "IDLE",
         "symbol": "BALY",
         "mic": null,
-        "entry_px": 12.31,
-        "peak_px": 14.09,
-        "updated_at": "2026-11-06T01:50:46+00:00"
+        "entry_px": null,
+        "peak_px": null,
+        "updated_at": "2026-11-11T01:19:39+00:00",
+        "cooldown_until": "2026-11-13T01:19:39+00:00"
     },
     "SGRY": {
         "state": "RIDING",
         "symbol": "SGRY",
         "mic": null,
         "entry_px": 23.2465,
-        "peak_px": 23.35,
-        "updated_at": "2026-11-06T01:50:54+00:00"
+        "peak_px": 26.75,
+        "updated_at": "2026-11-11T01:19:47+00:00",
+        "last_checked_at": "2026-11-11T01:19:47+00:00"
     },
     "LTCC": {
         "state": "IDLE",
@@ -4664,12 +4666,13 @@
         "updated_at": "2026-10-06T19:27:49+00:00"
     },
     "RPGL": {
-        "state": "RIDING",
+        "state": "IDLE",
         "symbol": "RPGL",
         "mic": null,
-        "entry_px": 13.0872,
-        "peak_px": 13.125,
-        "updated_at": "2026-11-06T01:51:02+00:00"
+        "entry_px": null,
+        "peak_px": null,
+        "updated_at": "2026-11-11T01:19:56+00:00",
+        "cooldown_until": "2026-11-13T01:19:56+00:00"
     },
     "CTNM": {
         "state": "IDLE",
@@ -4717,15 +4720,17 @@
         "mic": null,
         "entry_px": 21.7,
         "peak_px": 21.85,
-        "updated_at": "2026-11-06T01:51:10+00:00"
+        "updated_at": "2026-11-11T01:20:04+00:00",
+        "last_checked_at": "2026-11-11T01:20:04+00:00"
     },
     "PTC": {
         "state": "RIDING",
         "symbol": "PTC",
         "mic": null,
         "entry_px": 193.39999,
-        "peak_px": 195.50999,
-        "updated_at": "2026-11-06T01:51:19+00:00"
+        "peak_px": 196.57001,
+        "updated_at": "2026-11-11T01:20:12+00:00",
+        "last_checked_at": "2026-11-11T01:20:12+00:00"
     },
     "XP": {
         "state": "IDLE",
@@ -4781,7 +4786,8 @@
         "mic": null,
         "entry_px": 28.31,
         "peak_px": 29.1,
-        "updated_at": "2026-11-06T01:51:27+00:00"
+        "updated_at": "2026-11-11T01:20:20+00:00",
+        "last_checked_at": "2026-11-11T01:20:20+00:00"
     },
     "INTT": {
         "state": "IDLE",
@@ -4821,7 +4827,8 @@
         "mic": null,
         "entry_px": 31.075,
         "peak_px": 31.885,
-        "updated_at": "2026-11-06T01:51:35+00:00"
+        "updated_at": "2026-11-11T01:20:28+00:00",
+        "last_checked_at": "2026-11-11T01:20:28+00:00"
     },
     "FEDU": {
         "state": "IDLE",
@@ -4844,8 +4851,9 @@
         "symbol": "PCRX",
         "mic": null,
         "entry_px": 36.3,
-        "peak_px": 36.435,
-        "updated_at": "2026-11-06T01:51:43+00:00"
+        "peak_px": 36.47,
+        "updated_at": "2026-11-11T01:20:37+00:00",
+        "last_checked_at": "2026-11-11T01:20:36+00:00"
     },
     "KLRA": {
         "state": "RIDING",
