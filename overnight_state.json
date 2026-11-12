@@ -1,5 +1,11 @@
 {
     "_meta": {
         "last_quality_date": "2026-11-09"
+    },
+    "MBGL": {
+        "close_date": "2026-11-12",
+        "early_price": 23.04,
+        "close_price": 23.04,
+        "signals": []
     }
 }
