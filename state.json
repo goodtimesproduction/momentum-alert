@@ -1306,12 +1306,12 @@
         "updated_at": "2026-10-30T13:44:20+00:00"
     },
     "AVEX": {
-        "state": "IDLE",
+        "state": "RIDING",
         "symbol": "AVEX",
         "mic": null,
-        "entry_px": null,
-        "peak_px": null,
-        "updated_at": "2026-07-01T13:42:08+00:00"
+        "entry_px": 14.73,
+        "peak_px": 14.73,
+        "updated_at": "2026-11-12T15:40:07+00:00"
     },
     "AVAV": {
         "state": "IDLE",
@@ -3382,12 +3382,12 @@
         "updated_at": "2026-11-02T16:48:06+00:00"
     },
     "TISI": {
-        "state": "IDLE",
+        "state": "RIDING",
         "symbol": "TISI",
         "mic": null,
-        "entry_px": null,
-        "peak_px": null,
-        "updated_at": "2026-10-09T14:06:24+00:00"
+        "entry_px": 23.47,
+        "peak_px": 23.47,
+        "updated_at": "2026-11-12T15:40:08+00:00"
     },
     "ALMR": {
         "state": "IDLE",
@@ -5157,15 +5157,17 @@
         "mic": null,
         "entry_px": 39.49,
         "peak_px": 43.65,
-        "updated_at": "2026-11-06T01:54:03+00:00"
+        "updated_at": "2026-11-12T15:40:08+00:00",
+        "last_checked_at": "2026-11-12T15:40:08+00:00"
     },
     "MESO": {
-        "state": "RIDING",
+        "state": "IDLE",
         "symbol": "MESO",
         "mic": null,
-        "entry_px": 15.51,
-        "peak_px": 15.66,
-        "updated_at": "2026-11-06T01:54:11+00:00"
+        "entry_px": null,
+        "peak_px": null,
+        "updated_at": "2026-11-12T15:40:16+00:00",
+        "cooldown_until": "2026-11-14T15:40:16+00:00"
     },
     "KPLT": {
         "state": "IDLE",
@@ -5181,7 +5183,8 @@
         "mic": null,
         "entry_px": 19.705,
         "peak_px": 24.89,
-        "updated_at": "2026-11-06T01:54:19+00:00"
+        "updated_at": "2026-11-12T15:40:25+00:00",
+        "last_checked_at": "2026-11-12T15:40:24+00:00"
     },
     "CVNA": {
         "state": "RIDING",
@@ -5189,7 +5192,8 @@
         "mic": null,
         "entry_px": 68.555,
         "peak_px": 77.562,
-        "updated_at": "2026-11-06T01:54:27+00:00"
+        "updated_at": "2026-11-12T15:40:33+00:00",
+        "last_checked_at": "2026-11-12T15:40:33+00:00"
     },
     "HYPG": {
         "state": "IDLE",
@@ -5213,7 +5217,8 @@
         "mic": null,
         "entry_px": 217,
         "peak_px": 232.10001,
-        "updated_at": "2026-11-06T01:54:35+00:00"
+        "updated_at": "2026-11-12T15:40:41+00:00",
+        "last_checked_at": "2026-11-12T15:40:41+00:00"
     },
     "GEN": {
         "state": "RIDING",
@@ -5221,7 +5226,8 @@
         "mic": null,
         "entry_px": 28.2,
         "peak_px": 30.89,
-        "updated_at": "2026-11-06T01:54:44+00:00"
+        "updated_at": "2026-11-12T15:40:49+00:00",
+        "last_checked_at": "2026-11-12T15:40:49+00:00"
     },
     "SPOK": {
         "state": "RIDING",
@@ -5229,7 +5235,8 @@
         "mic": null,
         "entry_px": 11.78,
         "peak_px": 12.235,
-        "updated_at": "2026-11-06T01:54:52+00:00"
+        "updated_at": "2026-11-12T15:40:57+00:00",
+        "last_checked_at": "2026-11-12T15:40:57+00:00"
     },
     "OSPN": {
         "state": "IDLE",
@@ -5253,7 +5260,8 @@
         "mic": null,
         "entry_px": 11.4516,
         "peak_px": 13.75,
-        "updated_at": "2026-11-06T01:55:00+00:00"
+        "updated_at": "2026-11-12T15:41:05+00:00",
+        "last_checked_at": "2026-11-12T15:41:05+00:00"
     },
     "CPRI": {
         "state": "RIDING",
