@@ -5508,24 +5508,27 @@
         "symbol": "LYNX",
         "mic": null,
         "entry_px": 11.48,
-        "peak_px": 11.51,
-        "updated_at": "2026-11-06T01:58:25+00:00"
+        "peak_px": 13.47,
+        "updated_at": "2026-11-14T01:31:04+00:00",
+        "last_checked_at": "2026-11-14T01:31:03+00:00"
     },
     "ADMA": {
         "state": "RIDING",
         "symbol": "ADMA",
         "mic": null,
         "entry_px": 12.72,
-        "peak_px": 13.22,
-        "updated_at": "2026-11-06T01:58:33+00:00"
+        "peak_px": 13.69,
+        "updated_at": "2026-11-14T01:31:12+00:00",
+        "last_checked_at": "2026-11-14T01:31:12+00:00"
     },
     "VCEL": {
         "state": "RIDING",
         "symbol": "VCEL",
         "mic": null,
         "entry_px": 55.195,
-        "peak_px": 55.195,
-        "updated_at": "2026-11-06T01:58:41+00:00"
+        "peak_px": 56.91,
+        "updated_at": "2026-11-14T01:31:20+00:00",
+        "last_checked_at": "2026-11-14T01:31:20+00:00"
     },
     "SEZL": {
         "state": "RIDING",
@@ -5533,15 +5536,17 @@
         "mic": null,
         "entry_px": 165.75,
         "peak_px": 165.75,
-        "updated_at": "2026-11-06T01:58:49+00:00"
+        "updated_at": "2026-11-14T01:31:28+00:00",
+        "last_checked_at": "2026-11-14T01:31:28+00:00"
     },
     "WRBY": {
         "state": "RIDING",
         "symbol": "WRBY",
         "mic": null,
         "entry_px": 25.35,
-        "peak_px": 26.265,
-        "updated_at": "2026-11-06T01:58:58+00:00"
+        "peak_px": 27.44,
+        "updated_at": "2026-11-14T01:31:37+00:00",
+        "last_checked_at": "2026-11-14T01:31:36+00:00"
     },
     "EPAM": {
         "state": "RIDING",
@@ -5549,7 +5554,8 @@
         "mic": null,
         "entry_px": 160.99,
         "peak_px": 166.2,
-        "updated_at": "2026-11-06T01:59:06+00:00"
+        "updated_at": "2026-11-14T01:31:45+00:00",
+        "last_checked_at": "2026-11-14T01:31:45+00:00"
     },
     "ENOV": {
         "state": "RIDING",
@@ -5557,7 +5563,8 @@
         "mic": null,
         "entry_px": 28.235,
         "peak_px": 28.59,
-        "updated_at": "2026-11-06T01:59:14+00:00"
+        "updated_at": "2026-11-14T01:31:53+00:00",
+        "last_checked_at": "2026-11-14T01:31:53+00:00"
     },
     "DLX": {
         "state": "RIDING",
@@ -5565,7 +5572,8 @@
         "mic": null,
         "entry_px": 27.07,
         "peak_px": 27.71,
-        "updated_at": "2026-11-06T01:59:22+00:00"
+        "updated_at": "2026-11-14T01:32:01+00:00",
+        "last_checked_at": "2026-11-14T01:32:01+00:00"
     },
     "ECPG": {
         "state": "RIDING",
