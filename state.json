@@ -1604,8 +1604,9 @@
         "symbol": "LASR",
         "mic": null,
         "entry_px": 35.7628,
-        "peak_px": 35.7628,
-        "updated_at": "2026-11-06T14:41:22+00:00"
+        "peak_px": 38.89,
+        "updated_at": "2026-11-16T16:36:40+00:00",
+        "last_checked_at": "2026-11-16T16:36:40+00:00"
     },
     "FXHO": {
         "state": "IDLE",
@@ -1899,12 +1900,13 @@
         "last_checked_at": "2026-11-07T00:30:03+00:00"
     },
     "IREN": {
-        "state": "RIDING",
+        "state": "IDLE",
         "symbol": "IREN",
         "mic": null,
-        "entry_px": 21.15,
-        "peak_px": 21.15,
-        "updated_at": "2026-11-06T14:41:23+00:00"
+        "entry_px": null,
+        "peak_px": null,
+        "updated_at": "2026-11-16T16:36:57+00:00",
+        "cooldown_until": "2026-11-18T16:36:57+00:00"
     },
     "GMTL": {
         "state": "IDLE",
@@ -5576,28 +5578,31 @@
         "last_checked_at": "2026-11-14T01:32:01+00:00"
     },
     "ECPG": {
-        "state": "RIDING",
+        "state": "IDLE",
         "symbol": "ECPG",
         "mic": null,
-        "entry_px": 126.17,
-        "peak_px": 126.43,
-        "updated_at": "2026-11-06T01:59:30+00:00"
+        "entry_px": null,
+        "peak_px": null,
+        "updated_at": "2026-11-16T16:36:15+00:00",
+        "cooldown_until": "2026-11-18T16:36:15+00:00"
     },
     "FROG": {
         "state": "RIDING",
         "symbol": "FROG",
         "mic": null,
         "entry_px": 94.48,
-        "peak_px": 94.48,
-        "updated_at": "2026-11-06T14:41:21+00:00"
+        "peak_px": 110.95,
+        "updated_at": "2026-11-16T16:36:23+00:00",
+        "last_checked_at": "2026-11-16T16:36:23+00:00"
     },
     "SKIN": {
         "state": "RIDING",
         "symbol": "SKIN",
         "mic": null,
         "entry_px": 12.715,
-        "peak_px": 12.715,
-        "updated_at": "2026-11-06T14:41:21+00:00"
+        "peak_px": 15.345,
+        "updated_at": "2026-11-16T16:36:32+00:00",
+        "last_checked_at": "2026-11-16T16:36:31+00:00"
     },
     "EXTR": {
         "state": "RIDING",
@@ -5605,23 +5610,26 @@
         "mic": null,
         "entry_px": 25.8499,
         "peak_px": 25.8499,
-        "updated_at": "2026-11-06T14:41:22+00:00"
+        "updated_at": "2026-11-16T16:36:48+00:00",
+        "last_checked_at": "2026-11-16T16:36:48+00:00"
     },
     "TMDX": {
         "state": "RIDING",
         "symbol": "TMDX",
         "mic": null,
         "entry_px": 80.625,
-        "peak_px": 80.625,
-        "updated_at": "2026-11-06T14:41:23+00:00"
+        "peak_px": 91.33,
+        "updated_at": "2026-11-16T16:37:05+00:00",
+        "last_checked_at": "2026-11-16T16:37:05+00:00"
     },
     "CYRX": {
         "state": "RIDING",
         "symbol": "CYRX",
         "mic": null,
         "entry_px": 18.74,
-        "peak_px": 18.74,
-        "updated_at": "2026-11-06T14:41:23+00:00"
+        "peak_px": 19.91,
+        "updated_at": "2026-11-16T16:37:13+00:00",
+        "last_checked_at": "2026-11-16T16:37:13+00:00"
     },
     "AOSL": {
         "state": "RIDING",
