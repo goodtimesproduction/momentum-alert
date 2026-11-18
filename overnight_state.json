@@ -1,5 +1,11 @@
 {
     "_meta": {
         "last_quality_date": "2026-11-16"
+    },
+    "BRBR": {
+        "close_date": "2026-11-18",
+        "early_price": 13.545,
+        "close_price": 13.545,
+        "signals": []
     }
 }
