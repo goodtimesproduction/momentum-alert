@@ -3,9 +3,21 @@
         "last_quality_date": "2026-11-16"
     },
     "BRBR": {
-        "close_date": "2026-11-18",
-        "early_price": 13.545,
-        "close_price": 13.545,
+        "close_date": "2026-11-19",
+        "early_price": 15.23,
+        "close_price": 15.23,
+        "signals": []
+    },
+    "INSM": {
+        "close_date": "2026-11-19",
+        "early_price": 145.285,
+        "close_price": 145.285,
+        "signals": []
+    },
+    "ANT": {
+        "close_date": "2026-11-19",
+        "early_price": 95.87,
+        "close_price": 95.87,
         "signals": []
     }
 }
