@@ -1,6 +1,6 @@
 {
     "_meta": {
-        "last_quality_date": "2026-11-23"
+        "last_quality_date": "2026-11-24"
     },
     "BRBR": {
         "close_date": "2026-11-20",
@@ -12,12 +12,6 @@
         "close_date": "2026-11-20",
         "early_price": 142.515,
         "close_price": 142.515,
-        "signals": []
-    },
-    "ANT": {
-        "close_date": "2026-11-19",
-        "early_price": 95.87,
-        "close_price": 95.87,
         "signals": []
     },
     "SQQQ": {
