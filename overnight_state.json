@@ -1,23 +1,5 @@
 {
     "_meta": {
         "last_quality_date": "2026-11-24"
-    },
-    "BRBR": {
-        "close_date": "2026-11-20",
-        "early_price": 14.52,
-        "close_price": 14.52,
-        "signals": []
-    },
-    "INSM": {
-        "close_date": "2026-11-20",
-        "early_price": 142.515,
-        "close_price": 142.515,
-        "signals": []
-    },
-    "SQQQ": {
-        "close_date": "2026-11-20",
-        "early_price": 56.44,
-        "close_price": 56.44,
-        "signals": []
     }
 }
