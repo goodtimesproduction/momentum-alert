@@ -500,13 +500,12 @@
         "updated_at": "2026-09-28T20:56:00+00:00"
     },
     "ARQQ": {
-        "state": "IDLE",
+        "state": "RIDING",
         "symbol": "ARQQ",
         "mic": null,
-        "entry_px": null,
-        "peak_px": null,
-        "updated_at": "2026-11-17T16:34:00+00:00",
-        "cooldown_until": "2026-11-19T16:34:00+00:00"
+        "entry_px": 14.155,
+        "peak_px": 14.155,
+        "updated_at": "2026-11-27T17:03:20+00:00"
     },
     "UXRP": {
         "state": "IDLE",
@@ -4767,12 +4766,12 @@
         "updated_at": "2026-10-06T14:01:50+00:00"
     },
     "UBR": {
-        "state": "IDLE",
+        "state": "RIDING",
         "symbol": "UBR",
         "mic": null,
-        "entry_px": null,
-        "peak_px": null,
-        "updated_at": "2026-10-26T13:53:57+00:00"
+        "entry_px": 24,
+        "peak_px": 24,
+        "updated_at": "2026-11-27T17:03:20+00:00"
     },
     "PICS": {
         "state": "IDLE",
@@ -5473,18 +5472,18 @@
         "symbol": "MDLN",
         "mic": null,
         "entry_px": 40.35,
-        "peak_px": 40.65,
-        "updated_at": "2026-11-13T21:12:09+00:00",
-        "last_checked_at": "2026-11-13T21:12:09+00:00"
+        "peak_px": 41.025,
+        "updated_at": "2026-11-27T17:03:20+00:00",
+        "last_checked_at": "2026-11-27T17:03:20+00:00"
     },
     "RYTM": {
         "state": "RIDING",
         "symbol": "RYTM",
         "mic": null,
         "entry_px": 110.68,
-        "peak_px": 115.03,
-        "updated_at": "2026-11-13T21:12:17+00:00",
-        "last_checked_at": "2026-11-13T21:12:17+00:00"
+        "peak_px": 119.89,
+        "updated_at": "2026-11-27T17:03:29+00:00",
+        "last_checked_at": "2026-11-27T17:03:28+00:00"
     },
     "APP": {
         "state": "RIDING",
@@ -5492,17 +5491,17 @@
         "mic": null,
         "entry_px": 358.1868,
         "peak_px": 409.12,
-        "updated_at": "2026-11-13T21:12:25+00:00",
-        "last_checked_at": "2026-11-13T21:12:25+00:00"
+        "updated_at": "2026-11-27T17:03:37+00:00",
+        "last_checked_at": "2026-11-27T17:03:37+00:00"
     },
     "XERS": {
         "state": "RIDING",
         "symbol": "XERS",
         "mic": null,
         "entry_px": 13.27,
-        "peak_px": 16.655,
-        "updated_at": "2026-11-13T21:12:33+00:00",
-        "last_checked_at": "2026-11-13T21:12:33+00:00"
+        "peak_px": 17.84,
+        "updated_at": "2026-11-27T17:03:45+00:00",
+        "last_checked_at": "2026-11-27T17:03:45+00:00"
     },
     "TBI": {
         "state": "RIDING",
@@ -5510,8 +5509,8 @@
         "mic": null,
         "entry_px": 12.37,
         "peak_px": 12.43,
-        "updated_at": "2026-11-13T21:12:42+00:00",
-        "last_checked_at": "2026-11-13T21:12:41+00:00"
+        "updated_at": "2026-11-27T17:03:53+00:00",
+        "last_checked_at": "2026-11-27T17:03:53+00:00"
     },
     "ARDT": {
         "state": "RIDING",
@@ -5519,8 +5518,8 @@
         "mic": null,
         "entry_px": 15.9442,
         "peak_px": 17.8,
-        "updated_at": "2026-11-13T21:12:50+00:00",
-        "last_checked_at": "2026-11-13T21:12:50+00:00"
+        "updated_at": "2026-11-27T17:04:01+00:00",
+        "last_checked_at": "2026-11-27T17:04:01+00:00"
     },
     "LYNX": {
         "state": "RIDING",
@@ -5528,17 +5527,17 @@
         "mic": null,
         "entry_px": 11.48,
         "peak_px": 13.47,
-        "updated_at": "2026-11-14T01:31:04+00:00",
-        "last_checked_at": "2026-11-14T01:31:03+00:00"
+        "updated_at": "2026-11-27T17:04:09+00:00",
+        "last_checked_at": "2026-11-27T17:04:09+00:00"
     },
     "ADMA": {
         "state": "RIDING",
         "symbol": "ADMA",
         "mic": null,
         "entry_px": 12.72,
-        "peak_px": 13.69,
-        "updated_at": "2026-11-14T01:31:12+00:00",
-        "last_checked_at": "2026-11-14T01:31:12+00:00"
+        "peak_px": 14.195,
+        "updated_at": "2026-11-27T17:04:17+00:00",
+        "last_checked_at": "2026-11-27T17:04:17+00:00"
     },
     "VCEL": {
         "state": "RIDING",
@@ -5932,5 +5931,13 @@
         "entry_px": 24.66,
         "peak_px": 24.66,
         "updated_at": "2026-11-24T18:26:55+00:00"
+    },
+    "ANTU": {
+        "state": "RIDING",
+        "symbol": "ANTU",
+        "mic": null,
+        "entry_px": 26.1218,
+        "peak_px": 26.1218,
+        "updated_at": "2026-11-27T17:03:20+00:00"
     }
 }
